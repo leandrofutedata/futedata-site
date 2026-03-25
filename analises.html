@@ -190,7 +190,7 @@ function renderCards(artigos) {
   }
   grid.innerHTML = artigos.map((a, i) => {
     const badge = tipoBadge(a.type);
-    const excerpt = a.body ? a.body.substring(0, 160) + '...' : '';
+    const excerpt = a.body ? a.body.replace(/#{1,6}\s/g, '').replace(/\*\*/g, '').replace(/\*/g, '').replace(/---/g, '').trim().substring(0, 160) + '...' : '';
     return `
     <div class="article-card" onclick="abrirModal(${i})">
       <div class="card-badge">
