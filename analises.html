@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Futedata — Análises</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+:root{
+  --verde:#00843D;--verde-d:#005C2B;--verde-l:#E6F5ED;--verde-m:#B3D9C3;
+  --vg10:rgba(0,132,61,.10);--vg20:rgba(0,132,61,.20);
+  --am:#F5C800;--am-d:#C8A200;--am10:rgba(245,200,0,.10);
+  --cream:#F8F7F4;--cream-d:#EDECE8;--white:#FFFFFF;
+  --k900:#1A1A1A;--k700:#3D3D3D;--k500:#717171;--k300:#ABABAB;--k100:#EBEBEA;
+  --border:#E2E1DD;--red:#DC2626;--red-l:#FEE2E2;
+}
+body{font-family:'Syne',sans-serif;background:var(--cream);color:var(--k700);font-size:15px;line-height:1.55;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+button{font-family:inherit;cursor:pointer;}
+
+.topbar{background:var(--verde-d);padding:7px 24px;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;}
+.tb-text{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,.65);letter-spacing:.02em;}
+.tb-pill{display:inline-flex;align-items:center;gap:5px;background:var(--am);color:var(--verde-d);font-family:'DM Mono',monospace;font-size:10px;font-weight:700;padding:2px 10px;border-radius:20px;letter-spacing:.03em;}
+.tb-dot{width:6px;height:6px;border-radius:50%;background:var(--verde-d);animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+header{position:sticky;top:0;z-index:200;background:rgba(248,247,244,.96);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);}
+.hd{max-width:1280px;margin:0 auto;padding:0 32px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-family:'Bebas Neue',cursive;font-size:26px;letter-spacing:.04em;color:var(--k900);}
+.logo span{color:var(--verde);}
+.nav{display:flex;align-items:center;gap:24px;}
+.nav a{font-size:13px;font-weight:600;color:var(--k500);transition:color .2s;}
+.nav a:hover{color:var(--k900);}
+.nav .btn-cta{background:var(--verde);color:#fff;font-size:13px;font-weight:700;padding:8px 18px;border-radius:8px;border:none;transition:background .2s,transform .15s;}
+.nav .btn-cta:hover{background:var(--verde-d);transform:translateY(-1px);}
+
+.page-header{max-width:1280px;margin:0 auto;padding:48px 32px 32px;}
+.page-title{font-family:'Bebas Neue',cursive;font-size:48px;letter-spacing:.04em;color:var(--k900);line-height:1;}
+.page-title span{color:var(--verde);}
+.page-sub{font-size:14px;color:var(--k500);margin-top:8px;}
+
+.filters{max-width:1280px;margin:0 auto;padding:0 32px 32px;display:flex;gap:8px;flex-wrap:wrap;}
+.filter-btn{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;padding:6px 16px;border-radius:20px;border:1.5px solid var(--border);background:transparent;color:var(--k500);cursor:pointer;transition:all .2s;letter-spacing:.03em;}
+.filter-btn:hover{border-color:var(--verde);color:var(--verde);}
+.filter-btn.active{background:var(--verde);border-color:var(--verde);color:#fff;}
+
+.articles-grid{max-width:1280px;margin:0 auto;padding:0 32px 64px;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;}
+
+.article-card{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:transform .2s,box-shadow .2s;cursor:pointer;}
+.article-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.08);}
+.card-badge{padding:16px 20px 0;display:flex;align-items:center;gap:8px;}
+.badge{font-family:'DM Mono',monospace;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.04em;}
+.badge-pos{background:var(--verde-l);color:var(--verde-d);}
+.badge-pre{background:var(--am10);color:var(--am-d);}
+.badge-live{background:var(--red-l);color:var(--red);animation:pulse 2s ease-in-out infinite;}
+.card-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--k300);margin-left:auto;}
+.card-body{padding:16px 20px 20px;}
+.card-title{font-size:15px;font-weight:700;color:var(--k900);line-height:1.35;margin-bottom:10px;}
+.card-excerpt{font-size:13px;color:var(--k500);line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.card-footer{padding:0 20px 16px;display:flex;align-items:center;justify-content:space-between;}
+.card-teams{font-family:'DM Mono',monospace;font-size:10px;color:var(--k300);}
+.card-link{font-size:12px;font-weight:700;color:var(--verde);display:flex;align-items:center;gap:4px;}
+
+.loading{text-align:center;padding:80px 32px;color:var(--k300);}
+.loading-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--verde);margin:0 3px;animation:bounce 1.2s ease-in-out infinite;}
+.loading-dot:nth-child(2){animation-delay:.2s;}
+.loading-dot:nth-child(3){animation-delay:.4s;}
+@keyframes bounce{0%,80%,100%{transform:scale(0)}40%{transform:scale(1)}}
+
+.empty{text-align:center;padding:80px 32px;}
+.empty-icon{font-size:48px;margin-bottom:16px;}
+.empty-text{font-size:16px;color:var(--k500);}
+
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;overflow-y:auto;padding:40px 20px;}
+.modal-overlay.open{display:flex;align-items:flex-start;justify-content:center;}
+.modal{background:var(--white);border-radius:16px;max-width:720px;width:100%;margin:auto;overflow:hidden;}
+.modal-header{padding:24px 28px 20px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:16px;}
+.modal-title{font-size:20px;font-weight:700;color:var(--k900);line-height:1.3;}
+.modal-close{background:none;border:none;font-size:24px;color:var(--k300);cursor:pointer;flex-shrink:0;line-height:1;}
+.modal-close:hover{color:var(--k900);}
+.modal-body{padding:28px;font-size:15px;line-height:1.8;color:var(--k700);white-space:pre-wrap;}
+.modal-footer{padding:20px 28px;border-top:1px solid var(--border);display:flex;align-items:center;gap:12px;}
+.modal-badge{font-family:'DM Mono',monospace;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;}
+.modal-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--k300);}
+
+footer{background:var(--verde-d);padding:40px 32px;text-align:center;}
+.footer-logo{font-family:'Bebas Neue',cursive;font-size:28px;color:rgba(255,255,255,.9);letter-spacing:.04em;}
+.footer-logo span{color:var(--am);}
+.footer-sub{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,.4);margin-top:8px;}
+
+@media(max-width:768px){
+  .hd{padding:0 16px;}
+  .nav a:not(.btn-cta){display:none;}
+  .page-header{padding:32px 16px 24px;}
+  .page-title{font-size:36px;}
+  .filters{padding:0 16px 24px;}
+  .articles-grid{padding:0 16px 48px;grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="tb-text">Análises em tempo real</span>
+  <span class="tb-pill"><span class="tb-dot"></span> AO VIVO</span>
+  <span class="tb-text">Brasileirão 2026</span>
+</div>
+
+<header>
+  <div class="hd">
+    <a href="/futedata-homepage-v5.html" class="logo">FUTE<span>DATA</span></a>
+    <nav class="nav">
+      <a href="/futedata-homepage-v5.html">Cartola</a>
+      <a href="/futedata-campeonatos-v2.html">Brasileirão</a>
+      <a href="/futedata-copa-v4.html">Copa 2026</a>
+      <a href="/analises.html" style="color:var(--verde)">Análises</a>
+      <a href="#" class="btn-cta">Cadastro gratuito</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-header">
+  <div class="page-title">ANÁLISES <span>FUTEDATA</span></div>
+  <div class="page-sub">Pré-jogo, tempo real e pós-jogo — geradas por IA, revisadas por dados</div>
+</div>
+
+<div class="filters">
+  <button class="filter-btn active" onclick="filtrar('todos')">Todos</button>
+  <button class="filter-btn" onclick="filtrar('pre-jogo')">Pré-Jogo</button>
+  <button class="filter-btn" onclick="filtrar('tempo-real')">Ao Vivo</button>
+  <button class="filter-btn" onclick="filtrar('pos-jogo')">Pós-Jogo</button>
+</div>
+
+<div class="articles-grid" id="grid">
+  <div class="loading">
+    <span class="loading-dot"></span>
+    <span class="loading-dot"></span>
+    <span class="loading-dot"></span>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal" onclick="fecharModal(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title"></div>
+      <button class="modal-close" onclick="fecharModal()">×</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-footer">
+      <span class="modal-badge" id="modal-badge"></span>
+      <span class="modal-date" id="modal-date"></span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">FUTE<span>DATA</span></div>
+  <div class="footer-sub">Dados que transformam como você joga</div>
+</footer>
+
+<script>
+const SUPABASE_URL = 'https://dntfhpmggmyuwlfxbzgi.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_789ArtlDiALr0YbaRePRkw_9Arsm4lk';
+const { createClient } = supabase;
+const db = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let todosArtigos = [];
+let filtroAtivo = 'todos';
+
+function tipoBadge(tipo) {
+  if (tipo === 'pos-jogo') return {classe: 'badge-pos', texto: 'PÓS-JOGO'};
+  if (tipo === 'pre-jogo') return {classe: 'badge-pre', texto: 'PRÉ-JOGO'};
+  if (tipo === 'tempo-real') return {classe: 'badge-live', texto: '● AO VIVO'};
+  return {classe: 'badge-pos', texto: tipo.toUpperCase()};
+}
+
+function formatarData(iso) {
+  const d = new Date(iso);
+  return d.toLocaleDateString('pt-BR', {day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit'});
+}
+
+function renderCards(artigos) {
+  const grid = document.getElementById('grid');
+  if (!artigos.length) {
+    grid.innerHTML = '<div class="empty"><div class="empty-icon">⚽</div><div class="empty-text">Nenhuma análise encontrada</div></div>';
+    return;
+  }
+  grid.innerHTML = artigos.map((a, i) => {
+    const badge = tipoBadge(a.type);
+    const excerpt = a.body ? a.body.substring(0, 160) + '...' : '';
+    return `
+    <div class="article-card" onclick="abrirModal(${i})">
+      <div class="card-badge">
+        <span class="badge ${badge.classe}">${badge.texto}</span>
+        <span class="card-date">${formatarData(a.published_at)}</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">${a.title}</div>
+        <div class="card-excerpt">${excerpt}</div>
+      </div>
+      <div class="card-footer">
+        <span class="card-teams">${a.type}</span>
+        <span class="card-link">Ler análise →</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filtrar(tipo) {
+  filtroAtivo = tipo;
+  document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+  const filtrados = tipo === 'todos' ? todosArtigos : todosArtigos.filter(a => a.type === tipo);
+  renderCards(filtrados);
+}
+
+function abrirModal(idx) {
+  const artigos = filtroAtivo === 'todos' ? todosArtigos : todosArtigos.filter(a => a.type === filtroAtivo);
+  const a = artigos[idx];
+  const badge = tipoBadge(a.type);
+  document.getElementById('modal-title').textContent = a.title;
+  document.getElementById('modal-body').textContent = a.body;
+  document.getElementById('modal-badge').className = `modal-badge badge ${badge.classe}`;
+  document.getElementById('modal-badge').textContent = badge.texto;
+  document.getElementById('modal-date').textContent = formatarData(a.published_at);
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function fecharModal(event) {
+  if (!event || event.target === document.getElementById('modal')) {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') fecharModal(); });
+
+async function carregarArtigos() {
+  try {
+    const { data, error } = await db
+      .from('articles')
+      .select('*')
+      .order('published_at', { ascending: false })
+      .limit(50);
+
+    if (error) throw error;
+    todosArtigos = data;
+    renderCards(data);
+  } catch (err) {
+    document.getElementById('grid').innerHTML = '<div class="empty"><div class="empty-icon">⚠️</div><div class="empty-text">Erro ao carregar análises</div></div>';
+    console.error(err);
+  }
+}
+
+carregarArtigos();
+</script>
+</body>
+</html>
