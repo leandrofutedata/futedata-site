@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Futedata — Os melhores para escalar no Cartola essa semana</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+:root{
+  --verde:    #00843D;
+  --verde-d:  #005C2B;
+  --verde-l:  #E6F5ED;
+  --verde-m:  #B3D9C3;
+  --vg10:     rgba(0,132,61,.10);
+  --vg20:     rgba(0,132,61,.20);
+  --am:       #F5C800;
+  --am-d:     #C8A200;
+  --am10:     rgba(245,200,0,.10);
+  --cream:    #F8F7F4;
+  --cream-d:  #EDECE8;
+  --white:    #FFFFFF;
+  --k900:     #1A1A1A;
+  --k700:     #3D3D3D;
+  --k500:     #717171;
+  --k300:     #ABABAB;
+  --k100:     #EBEBEA;
+  --border:   #E2E1DD;
+  --red:      #DC2626;
+  --red-l:    #FEE2E2;
+}
+
+body{
+  font-family:'Syne',sans-serif;
+  background:var(--cream);
+  color:var(--k700);
+  font-size:15px;
+  line-height:1.55;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit;}
+button{font-family:inherit;cursor:pointer;}
+
+/* ═══════════════════════════════
+   TOPBAR
+═══════════════════════════════ */
+.topbar{
+  background:var(--verde-d);
+  padding:7px 24px;
+  display:flex;align-items:center;justify-content:center;gap:20px;
+  flex-wrap:wrap;
+}
+.tb-text{
+  font-family:'DM Mono',monospace;font-size:11px;
+  color:rgba(255,255,255,.65);letter-spacing:.02em;
+}
+.tb-pill{
+  display:inline-flex;align-items:center;gap:5px;
+  background:var(--am);color:var(--verde-d);
+  font-family:'DM Mono',monospace;font-size:10px;font-weight:700;
+  padding:2px 10px;border-radius:20px;letter-spacing:.03em;
+}
+.tb-dot{width:6px;height:6px;border-radius:50%;background:var(--verde-d);animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ═══════════════════════════════
+   HEADER
+═══════════════════════════════ */
+header{
+  position:sticky;top:0;z-index:200;
+  background:rgba(248,247,244,.96);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+.hd{
+  max-width:1280px;margin:0 auto;
+  padding:0 32px;height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.logo{
+  font-family:'Bebas Neue',cursive;
+  font-size:26px;letter-spacing:.04em;
+  color:var(--k900);
+}
+.logo span{color:var(--verde);}
+.nav{display:flex;align-items:center;gap:24px;}
+.nav a{
+  font-size:13px;font-weight:600;color:var(--k500);
+  transition:color .2s;
+}
+.nav a:hover{color:var(--k900);}
+.nav .btn-cta{
+  background:var(--verde);color:#fff;
+  font-size:13px;font-weight:700;
+  padding:8px 18px;border-radius:8px;border:none;
+  transition:background .2s,transform .15s;
+}
+.nav .btn-cta:hover{background:var(--verde-d);transform:translateY(-1px);}
+
+/* ═══════════════════════════════
+   HERO
+═══════════════════════════════ */
+.hero{
+  max-width:1280px;margin:0 auto;
+  padding:56px 32px 64px;
+  display:grid;
+  grid-template-columns:1fr 480px;
+  gap:56px;
+  align-items:start;
+}
+
+/* ── LEFT: copy ── */
+.hero-l{}
+
+/* Hero inline proof strip */
+.hero-proof-strip{
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:24px;
+  opacity:0;animation:fadeu .5s .18s forwards;
+}
+.hps-item{
+  display:flex;align-items:center;gap:6px;
+  font-size:13px;color:var(--k500);
+}
+.hps-item strong{color:var(--verde-d);}
+.hps-div{width:1px;height:14px;background:var(--border);}
+
+/* RODADA badge */
+.rod-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--vg10);border:1px solid var(--vg20);
+  padding:5px 14px;border-radius:20px;
+  font-family:'DM Mono',monospace;font-size:11px;font-weight:500;
+  color:var(--verde-d);letter-spacing:.02em;
+  margin-bottom:24px;
+  opacity:0;animation:fadeu .5s .1s forwards;
+}
+.rod-dot{width:6px;height:6px;border-radius:50%;background:var(--verde);animation:pulse 2s ease-in-out infinite;}
+
+/* THE PROOF NUMBER — hero da esquerda */
+/* Entra primeiro, força o usuário a ler */
+.proof-hero{
+  display:flex;align-items:flex-end;gap:16px;
+  margin-bottom:12px;
+  opacity:0;animation:fadeu .6s .2s forwards;
+}
+.ph-num{
+  font-family:'Bebas Neue',cursive;
+  font-size:112px;line-height:1;
+  color:var(--verde);
+  letter-spacing:-.02em;
+}
+.ph-sup{
+  padding-bottom:20px;
+}
+.ph-label{
+  font-size:13px;font-weight:700;color:var(--k500);
+  line-height:1.3;
+}
+.ph-label strong{display:block;font-size:15px;color:var(--verde-d);}
+.ph-label em{font-style:normal;color:var(--k300);font-size:12px;font-family:'DM Mono',monospace;}
+
+/* Names strip under the big number */
+.names-strip{
+  display:flex;align-items:center;gap:0;
+  margin-bottom:28px;
+  opacity:0;animation:fadeu .5s .35s forwards;
+}
+.ns-avatars{display:flex;}
+.ns-av{
+  width:28px;height:28px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'DM Mono',monospace;font-size:9px;font-weight:700;color:#fff;
+  border:2px solid var(--cream);
+  margin-left:-6px;
+}
+.ns-av:first-child{margin-left:0;}
+.ns-text{
+  margin-left:10px;
+  font-size:13px;color:var(--k500);
+}
+.ns-text strong{color:var(--k700);}
+.ns-text span{
+  font-family:'DM Mono',monospace;
+  font-size:10px;color:var(--k300);
+}
+
+/* HEADLINE — comes AFTER the proof number */
+.h-title{
+  font-family:'Bebas Neue',cursive;
+  font-size:56px;line-height:1.0;
+  color:var(--k900);
+  letter-spacing:.01em;
+  margin-bottom:16px;
+  opacity:0;animation:fadeu .5s .45s forwards;
+}
+.h-title .y{color:var(--verde);}
+.h-title .dim{color:var(--k300);}
+
+/* SUB — zero jargão */
+.h-sub{
+  font-size:16px;line-height:1.6;color:var(--k500);
+  max-width:480px;
+  margin-bottom:28px;
+  opacity:0;animation:fadeu .5s .55s forwards;
+}
+.h-sub strong{color:var(--k700);}
+
+/* COMO USAR — a linha que converte */
+.como-usar{
+  background:var(--am10);
+  border:1px solid var(--am-d);
+  border-left:4px solid var(--am);
+  padding:12px 16px;
+  border-radius:0 8px 8px 0;
+  margin-bottom:28px;
+  opacity:0;animation:fadeu .5s .6s forwards;
+}
+.cu-title{
+  font-family:'DM Mono',monospace;font-size:11px;font-weight:700;
+  color:var(--am-d);letter-spacing:.04em;
+  margin-bottom:4px;
+}
+.cu-text{
+  font-size:14px;color:var(--k700);line-height:1.4;
+}
+
+/* CTA group */
+.h-ctas{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  margin-bottom:14px;
+  opacity:0;animation:fadeu .5s .7s forwards;
+}
+.btn-main{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--verde);color:#fff;
+  font-size:15px;font-weight:700;
+  padding:14px 26px;border-radius:10px;border:none;
+  transition:background .2s,transform .15s,box-shadow .2s;
+  box-shadow:0 4px 16px rgba(0,132,61,.3);
+}
+.btn-main:hover{background:var(--verde-d);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,132,61,.35);}
+.btn-sec{
+  display:inline-flex;align-items:center;gap:6px;
+  background:transparent;color:var(--k500);
+  font-size:13px;font-weight:600;
+  padding:10px 16px;border-radius:8px;
+  border:1.5px solid var(--border);
+  transition:border-color .2s,color .2s;
+}
+.btn-sec:hover{border-color:var(--k300);color:var(--k700);}
+.h-fn{
+  font-size:12px;color:var(--k300);
+  display:flex;align-items:center;gap:6px;
+  opacity:0;animation:fadeu .5s .8s forwards;
+}
+
+/* ── RIGHT: Ranking card ── */
+.hero-r{
+  opacity:0;animation:fadeu .6s .25s forwards;
+}
+
+/* ALERTA — topo do card, visível sem interação */
+.alert-banner{
+  background:var(--red-l);
+  border:1.5px solid var(--red);
+  border-radius:10px 10px 0 0;
+  padding:10px 14px;
+  display:flex;align-items:flex-start;gap:10px;
+}
+.ab-icon{
+  width:20px;height:20px;
+  background:var(--red);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:1px;
+}
+.ab-body{}
+.ab-title{
+  font-size:12px;font-weight:700;color:var(--red);
+  margin-bottom:2px;
+}
+.ab-sub{font-size:12px;color:var(--k500);line-height:1.4;}
+.ab-chip{
+  display:inline-flex;align-items:center;gap:4px;
+  background:var(--red);color:#fff;
+  font-family:'DM Mono',monospace;font-size:10px;font-weight:700;
+  padding:1px 8px;border-radius:4px;margin-top:4px;
+}
+
+/* Ranking card main */
+.rc{
+  background:var(--white);
+  border:1.5px solid var(--border);
+  border-top:none;
+  border-radius:0 0 12px 12px;
+  overflow:hidden;
+  box-shadow:0 8px 40px rgba(0,0,0,.07);
+}
+/* When no alert (standalone) */
+.rc.no-alert{
+  border-top:1.5px solid var(--border);
+  border-radius:12px;
+}
+
+.rc-head{
+  padding:14px 16px 0;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.rc-head-l{display:flex;align-items:center;gap:10px;}
+.rc-icon{
+  width:30px;height:30px;
+  background:var(--verde);border-radius:7px;
+  display:flex;align-items:center;justify-content:center;
+}
+.rc-title{font-size:14px;font-weight:700;color:var(--k900);}
+.rc-sub{
+  font-family:'DM Mono',monospace;font-size:10px;
+  color:var(--k300);margin-top:1px;
+}
+.rc-badge{
+  display:flex;align-items:center;gap:4px;
+  background:var(--vg10);
+  font-family:'DM Mono',monospace;font-size:9px;font-weight:700;
+  color:var(--verde-d);padding:3px 8px;border-radius:20px;
+}
+.rc-bd{width:5px;height:5px;border-radius:50%;background:var(--verde);animation:pulse 2s ease-in-out infinite;}
+
+/* COMO USAR — micro-instrução dentro do card */
+.rc-how{
+  margin:10px 16px 0;
+  background:var(--vg10);
+  border:1px solid var(--vg20);
+  border-radius:6px;
+  padding:8px 12px;
+  display:flex;align-items:center;gap:8px;
+}
+.rc-how-icon{font-size:14px;}
+.rc-how-text{
+  font-size:12px;color:var(--verde-d);font-weight:600;
+}
+.rc-how-text span{color:var(--k500);font-weight:400;}
+
+/* Tabs */
+.rc-tabs{
+  display:flex;gap:0;
+  padding:10px 16px 0;
+  border-bottom:1px solid var(--border);
+  overflow-x:auto;scrollbar-width:none;
+}
+.rc-tabs::-webkit-scrollbar{display:none;}
+.rc-tab{
+  padding:6px 12px;font-size:12px;font-weight:600;
+  color:var(--k300);cursor:pointer;
+  border-bottom:2px solid transparent;
+  transition:color .2s,border-color .2s;
+  white-space:nowrap;
+}
+.rc-tab.on{color:var(--verde);border-bottom-color:var(--verde);}
+.rc-tab:hover:not(.on){color:var(--k500);}
+
+/* Rows */
+.rc-body{padding:8px 0;}
+.rc-row{
+  display:grid;
+  grid-template-columns:28px 34px 1fr auto 60px;
+  align-items:center;gap:8px;
+  padding:8px 16px;
+  transition:background .15s;
+}
+.rc-row:hover{background:var(--cream);}
+.rc-row.top{background:rgba(0,132,61,.04);}
+.rc-row.top:hover{background:rgba(0,132,61,.08);}
+
+.rc-pos{
+  font-family:'DM Mono',monospace;font-size:11px;
+  font-weight:700;color:var(--k300);
+  text-align:center;
+}
+.rc-pos.g{color:var(--verde);}
+
+.rc-av{
+  width:32px;height:32px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'DM Mono',monospace;font-size:9px;font-weight:700;
+  color:#fff;
+}
+
+.rc-info{}
+.rc-name{font-size:13px;font-weight:700;color:var(--k900);}
+.rc-meta{font-size:11px;color:var(--k300);}
+.price{
+  font-family:'DM Mono',monospace;font-size:10px;
+  padding:1px 6px;border-radius:4px;
+  background:var(--k100);color:var(--k500);
+}
+.price.val{background:rgba(0,132,61,.12);color:var(--verde-d);}
+
+.mu{
+  font-family:'DM Mono',monospace;font-size:10px;
+  font-weight:700;padding:2px 6px;border-radius:4px;
+  white-space:nowrap;
+}
+.mu.easy{background:rgba(0,132,61,.12);color:var(--verde-d);}
+.mu.mid{background:var(--am10);color:var(--am-d);}
+.mu.hard{background:var(--red-l);color:var(--red);}
+
+.sp{text-align:center;}
+.sp-val{
+  font-family:'DM Mono',monospace;font-size:15px;font-weight:700;
+}
+.sp-val.hi{color:var(--verde);}
+.sp-val.mid{color:var(--am-d);}
+.sp-val.lo{color:var(--red);}
+.sp-lbl{font-size:9px;color:var(--k300);margin-top:1px;}
+
+/* score explanation */
+.rc-score-key{
+  margin:0 16px 12px;
+  padding:8px 12px;
+  background:var(--cream);
+  border-radius:6px;
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  gap:8px;
+}
+.sk-item{text-align:center;}
+.sk-pct{
+  font-family:'DM Mono',monospace;font-size:11px;font-weight:700;color:var(--verde);
+}
+.sk-lbl{font-size:10px;color:var(--k300);margin-top:2px;}
+
+/* ════ ANIMATIONS ════ */
+@keyframes fadeu{
+  from{opacity:0;transform:translateY(12px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* ═══════════════════════════════
+   PROOF STRIP
+═══════════════════════════════ */
+.proof-strip{
+  background:var(--white);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:20px 0;
+}
+.ps-inner{
+  max-width:1280px;margin:0 auto;padding:0 32px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:32px;flex-wrap:wrap;
+}
+.ps-item{
+  display:flex;align-items:center;gap:10px;
+}
+.ps-num{
+  font-family:'Bebas Neue',cursive;
+  font-size:32px;color:var(--verde);
+  letter-spacing:.02em;line-height:1;
+}
+.ps-info{}
+.ps-label{font-size:13px;font-weight:700;color:var(--k900);}
+.ps-sub{font-size:12px;color:var(--k500);}
+.ps-div{width:1px;height:32px;background:var(--border);}
+
+/* ═══════════════════════════════
+   COMO FUNCIONA — 3 passos Cartola
+═══════════════════════════════ */
+.section{
+  max-width:1280px;margin:0 auto;
+  padding:72px 32px;
+}
+.sec-badge{
+  font-family:'DM Mono',monospace;font-size:11px;font-weight:700;
+  color:var(--verde);letter-spacing:.08em;
+  text-transform:uppercase;margin-bottom:12px;
+}
+.sec-title{
+  font-family:'Bebas Neue',cursive;font-size:48px;
+  color:var(--k900);letter-spacing:.01em;line-height:1.05;
+  margin-bottom:12px;
+}
+.sec-sub{
+  font-size:16px;color:var(--k500);max-width:520px;line-height:1.6;
+  margin-bottom:48px;
+}
+
+/* Rodada 7 proof table */
+.proof-table{
+  background:var(--white);
+  border:1.5px solid var(--border);
+  border-radius:12px;overflow:hidden;
+  margin-bottom:32px;
+  box-shadow:0 4px 24px rgba(0,0,0,.05);
+}
+.pt-head{
+  display:grid;
+  grid-template-columns:30px 1fr 110px 110px 110px;
+  padding:10px 20px;
+  background:var(--cream);
+  border-bottom:1px solid var(--border);
+  font-family:'DM Mono',monospace;font-size:10px;font-weight:700;
+  color:var(--k300);letter-spacing:.04em;
+}
+.pt-row{
+  display:grid;
+  grid-template-columns:30px 1fr 110px 110px 110px;
+  padding:12px 20px;
+  align-items:center;
+  border-bottom:1px solid var(--cream-d);
+  transition:background .15s;
+}
+.pt-row:last-child{border-bottom:none;}
+.pt-row:hover{background:var(--cream);}
+.pt-n{
+  font-family:'DM Mono',monospace;font-size:11px;
+  font-weight:700;color:var(--verde);text-align:center;
+}
+.pt-player{}
+.pt-name{font-size:14px;font-weight:700;color:var(--k900);}
+.pt-club{font-size:12px;color:var(--k300);}
+.pt-score{
+  font-family:'DM Mono',monospace;
+  font-size:15px;font-weight:700;color:var(--verde);
+  text-align:center;
+}
+.pt-pts{
+  font-family:'DM Mono',monospace;
+  font-size:15px;font-weight:700;color:var(--k900);
+  text-align:center;
+}
+.pt-diff{text-align:center;}
+.diff-pill{
+  display:inline-flex;align-items:center;gap:3px;
+  background:var(--verde-l);color:var(--verde-d);
+  font-family:'DM Mono',monospace;font-size:11px;font-weight:700;
+  padding:2px 8px;border-radius:20px;
+}
+.pt-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 20px;
+  background:var(--cream);
+  border-top:1px solid var(--border);
+}
+.pt-avg{font-size:13px;color:var(--k500);}
+.pt-avg strong{color:var(--verde-d);font-family:'DM Mono',monospace;}
+
+/* How-it-works 3 steps */
+.how-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+.hw{
+  background:var(--white);
+  border:1.5px solid var(--border);
+  border-radius:12px;
+  padding:28px;
+  position:relative;
+}
+.hw-num{
+  font-family:'Bebas Neue',cursive;font-size:60px;
+  color:var(--vg20);line-height:1;
+  position:absolute;top:16px;right:20px;
+}
+.hw-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:var(--verde-l);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:16px;
+}
+.hw-title{font-size:15px;font-weight:700;color:var(--k900);margin-bottom:8px;}
+.hw-desc{font-size:14px;color:var(--k500);line-height:1.55;}
+.hw-chip{
+  display:inline-block;
+  font-family:'DM Mono',monospace;font-size:10px;font-weight:700;
+  background:var(--vg10);color:var(--verde-d);
+  padding:2px 8px;border-radius:4px;
+  margin-top:12px;
+}
+
+/* ═══════════════════════════════
+   ALERTA SECTION
+═══════════════════════════════ */
+.alert-section{
+  background:var(--k900);
+  padding:72px 0;
+}
+.as-inner{
+  max-width:1280px;margin:0 auto;padding:0 32px;
+  display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;
+}
+.as-l{}
+.as-badge{
+  font-family:'DM Mono',monospace;font-size:11px;font-weight:700;
+  color:var(--verde-m);letter-spacing:.08em;
+  text-transform:uppercase;margin-bottom:12px;
+}
+.as-title{
+  font-family:'Bebas Neue',cursive;font-size:48px;
+  color:#fff;letter-spacing:.01em;line-height:1.05;
+  margin-bottom:16px;
+}
+.as-title span{color:var(--am);}
+.as-sub{
+  font-size:16px;color:rgba(255,255,255,.55);line-height:1.6;
+  margin-bottom:24px;
+}
+.as-proof{
+  font-size:14px;color:rgba(255,255,255,.4);
+  font-family:'DM Mono',monospace;
+}
+
+/* Alert cards on the right */
+.as-r{display:flex;flex-direction:column;gap:14px;}
+.ac{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;
+  padding:16px;
+}
+.ac.danger{
+  background:rgba(220,38,38,.12);
+  border-color:rgba(220,38,38,.35);
+}
+.ac-header{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:8px;
+}
+.ac-icon{
+  width:22px;height:22px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.ac.danger .ac-icon{background:var(--red);}
+.ac.safe .ac-icon{background:var(--verde);}
+.ac-name{font-size:14px;font-weight:700;color:#fff;}
+.ac-club{font-size:12px;color:rgba(255,255,255,.4);}
+.ac-badge{
+  margin-left:auto;
+  font-family:'DM Mono',monospace;font-size:11px;font-weight:700;
+  padding:2px 8px;border-radius:4px;
+}
+.ac.danger .ac-badge{background:rgba(220,38,38,.2);color:#f87171;}
+.ac.safe .ac-badge{background:rgba(0,132,61,.2);color:var(--verde-m);}
+.ac-reason{font-size:13px;color:rgba(255,255,255,.5);line-height:1.5;}
+.ac-data{
+  display:flex;gap:12px;margin-top:8px;
+}
+.acd{
+  font-family:'DM Mono',monospace;font-size:10px;
+  padding:2px 8px;border-radius:4px;
+  background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);
+}
+
+/* ═══════════════════════════════
+   CTA FINAL
+═══════════════════════════════ */
+.cta-section{
+  background:var(--verde-d);
+  padding:80px 32px;
+  text-align:center;
+}
+.cta-badge{
+  font-family:'DM Mono',monospace;font-size:11px;font-weight:700;
+  color:var(--verde-m);letter-spacing:.08em;
+  text-transform:uppercase;margin-bottom:16px;
+}
+.cta-title{
+  font-family:'Bebas Neue',cursive;font-size:56px;
+  color:#fff;letter-spacing:.01em;line-height:1.05;
+  margin-bottom:16px;
+}
+.cta-title span{color:var(--am);}
+.cta-sub{
+  font-size:16px;color:rgba(255,255,255,.6);
+  max-width:520px;margin:0 auto 36px;line-height:1.6;
+}
+.cta-form{
+  display:flex;gap:12px;max-width:420px;
+  margin:0 auto 16px;
+}
+.cta-input{
+  flex:1;padding:14px 18px;
+  border:2px solid rgba(255,255,255,.2);
+  border-radius:10px;background:rgba(255,255,255,.12);
+  color:#fff;font-family:'Syne',sans-serif;font-size:15px;
+  outline:none;transition:border-color .2s;
+}
+.cta-input::placeholder{color:rgba(255,255,255,.4);}
+.cta-input:focus{border-color:rgba(255,255,255,.5);}
+.cta-btn{
+  padding:14px 24px;
+  background:var(--am);color:var(--verde-d);
+  font-family:'Syne',sans-serif;font-size:14px;font-weight:800;
+  border:none;border-radius:10px;
+  transition:transform .15s,box-shadow .2s;
+  white-space:nowrap;
+}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.2);}
+.cta-fn{
+  font-size:12px;color:rgba(255,255,255,.4);
+  display:flex;align-items:center;justify-content:center;gap:16px;
+}
+.cta-fn span{display:flex;align-items:center;gap:4px;}
+
+/* ═══════════════════════════════
+   FOOTER
+═══════════════════════════════ */
+footer{
+  background:var(--k900);
+  padding:32px;
+  text-align:center;
+}
+.ft-logo{
+  font-family:'Bebas Neue',cursive;font-size:22px;
+  color:#fff;letter-spacing:.04em;margin-bottom:8px;
+}
+.ft-logo span{color:var(--verde);}
+.ft-text{font-size:12px;color:rgba(255,255,255,.3);}
+
+/* ═══════════════════════════════
+   RESPONSIVE
+═══════════════════════════════ */
+@media(max-width:900px){
+  .hero{
+    grid-template-columns:1fr;
+    padding:32px 20px 40px;
+    gap:32px;
+  }
+  /* On mobile: ranking card comes FIRST for the 5-second test */
+  .hero-r{order:-1;}
+  .hero-l{order:1;}
+  .ph-num{font-size:80px;}
+  .h-title{font-size:40px;}
+  .how-grid{grid-template-columns:1fr;}
+  .as-inner{grid-template-columns:1fr;gap:32px;}
+  .as-title{font-size:36px;}
+  .cta-title{font-size:40px;}
+  .cta-form{flex-direction:column;}
+  .ps-div{display:none;}
+  .pt-head,.pt-row{
+    grid-template-columns:24px 1fr 80px 80px;
+  }
+  .pt-head > *:last-child,
+  .pt-row > *:last-child{display:none;}
+  .hd .nav{display:none;}
+}
+
+</style>
+</head>
+<body>
+
+<!-- ════════ TOPBAR ════════ -->
+<div class="topbar">
+  <span class="tb-text">Novo ranking toda quarta-feira às 10h</span>
+  <span class="tb-pill"><span class="tb-dot"></span> RODADA 8 DISPONÍVEL</span>
+  <span class="tb-text">Brasileirão 2026</span>
+</div>
+
+<!-- ════════ HEADER ════════ -->
+<header>
+  <div class="hd">
+    <div class="logo">FUTE<span>DATA</span></div>
+    <nav class="nav">
+      <a href="#">Cartola</a>
+      <a href="#">Copa 2026</a>
+      <a href="#">Value Bets</a>
+      <a href="#" class="btn-cta">Cadastro gratuito</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════════════════
+     HERO
+
+     ESTRUTURA DO TESTE DOS 5 SEGUNDOS:
+     1. Usuário vê "13.8" — o que é isso?
+     2. Lê "pts médios — top 3 na rodada 7"
+     3. Vê os nomes: "Vinicius Jr · Gabi Ferreira · Bruno Guimarães"
+     4. Olha para a direita: ranking desta semana já está lá
+     5. Lê "Copie esses nomes no Cartola"
+     → Decisão: "Isso me diz exatamente quem escalar"
+════════════════════════════════════════════════ -->
+<div class="hero">
+
+  <!-- LEFT: prova primeiro, headline depois -->
+  <div class="hero-l">
+
+    <div class="rod-badge">
+      <span class="rod-dot"></span>
+      Rodada 8 · Atualizado hoje · antes do deadline de quinta-feira
+    </div>
+
+    <!-- PROVA SOCIAL INLINE — entra no hero, não depois -->
+    <div class="hero-proof-strip">
+      <div class="hps-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00843D" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span><strong>68%</strong> dos indicados pontuaram acima da média</span>
+      </div>
+      <div class="hps-div"></div>
+      <div class="hps-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F5C800" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>Ganhe sua liga · suba no ranking</span>
+      </div>
+    </div>
+
+    <!-- O NÚMERO ENTRA PRIMEIRO
+         13.8 pts médios é uma prova antes de qualquer argumento.
+         Um usuário do Cartola sabe que 13.8 é excelente. -->
+    <div class="proof-hero">
+      <div class="ph-num">13.8</div>
+      <div class="ph-sup">
+        <div class="ph-label">
+          <strong>pts médios no Cartola</strong>
+          top 3 jogadores indicados pelo modelo<br>
+          <em>na última rodada · média geral: 8.2 pts</em>
+        </div>
+      </div>
+    </div>
+
+    <!-- Os 3 nomes embaixo do número.
+         Prova imediata: esses jogadores existem de verdade. -->
+    <div class="names-strip">
+      <div class="ns-avatars">
+        <div class="ns-av" style="background:#E02020">VJ</div>
+        <div class="ns-av" style="background:#006437">GF</div>
+        <div class="ns-av" style="background:#1E3A8A">BG</div>
+      </div>
+      <div class="ns-text">
+        <strong>Vinicius Jr · Gabi Ferreira · Bruno Guimarães</strong><br>
+        <span>foram os 3 que o modelo indicou na Rodada 7</span>
+      </div>
+    </div>
+
+    <!-- HEADLINE — vem depois da prova, não antes.
+         Já não precisa convencer — só nomeia o que o usuário viu. -->
+    <h1 class="h-title">
+      QUEM ESCALAR<br>
+      NA <span class="y">RODADA 8?</span><br>
+      <span class="dim">O MODELO JÁ CALCULOU.</span>
+    </h1>
+
+    <!-- SUB — zero jargão técnico.
+         Não menciona xG, PPDA ou expected goals. -->
+    <p class="h-sub">
+      Toda quarta o Futedata calcula quem tem mais chance de pontuar <strong>nessa rodada específica</strong> — levando em conta o adversário, a fase atual e o histórico recente de cada jogador.
+      Você recebe a lista pronta antes da quinta-feira.
+    </p>
+
+    <!-- COMO USAR — a linha que fecha a conversão.
+         O usuário precisa saber EXATAMENTE o que fazer com essa informação. -->
+    <div class="como-usar">
+      <div class="cu-title">📋 COMO USAR</div>
+      <div class="cu-text">
+        Abra o Cartola. Veja o top 5 de cada posição no ranking.
+        <strong>Substitua quem você estava pensando em escalar</strong> pelo que o modelo indica — especialmente quem o alerta marca de vermelho.
+      </div>
+    </div>
+
+    <div class="h-ctas">
+      <button class="btn-main">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="20" x2="12" y2="4"/><polyline points="4 12 12 4 20 12"/></svg>
+        Ver quem escalar na Rodada 8
+      </button>
+      <button class="btn-sec">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Ver como funciona
+      </button>
+    </div>
+    <div class="h-fn">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      Gratuito · Sem cartão · Ranking novo toda quarta-feira
+    </div>
+
+  </div><!-- /hero-l -->
+
+  <!-- RIGHT: o produto visível, acima da dobra
+       No mobile, este bloco sobe para o topo (order:-1) -->
+  <div class="hero-r">
+
+    <!-- ALERTA NO TOPO DO CARD — visível sem interação.
+         Este é o diferencial de produto mais forte:
+         dizer quem EVITAR é mais valioso do que dizer quem escalar. -->
+    <div class="alert-banner">
+      <div class="ab-icon">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div class="ab-body">
+        <div class="ab-title">⚠ ALERTA — evitar nessa rodada</div>
+        <div class="ab-sub">
+          <strong>Hulk (Atlético-MG)</strong> — o mais escalado desta semana.
+          Enfrenta o Fortaleza, melhor defesa do campeonato. O modelo dá score 5.1.
+        </div>
+        <div class="ab-chip">score 5.1 / 10</div>
+      </div>
+    </div>
+
+    <!-- RANKING CARD -->
+    <div class="rc">
+
+      <div class="rc-head">
+        <div class="rc-head-l">
+          <div class="rc-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <div>
+            <div class="rc-title">Otimizador Cartola</div>
+            <div class="rc-sub">Top 5 por posição · Rodada 8 · 312 jogadores</div>
+          </div>
+        </div>
+        <div class="rc-badge"><span class="rc-bd"></span>Atualizado há 2h</div>
+      </div>
+
+      <!-- MICRO-INSTRUÇÃO — explica o que fazer com o ranking -->
+      <div class="rc-how">
+        <div class="rc-how-icon">📋</div>
+        <div class="rc-how-text">
+          Copie esses nomes no Cartola
+          <span> · use o score para decidir entre dois jogadores</span>
+        </div>
+      </div>
+
+      <!-- TABS -->
+      <div class="rc-tabs">
+        <div class="rc-tab on" onclick="tab(this,'ata')">Atacantes</div>
+        <div class="rc-tab" onclick="tab(this,'mei')">Meias</div>
+        <div class="rc-tab" onclick="tab(this,'lat')">Laterais</div>
+        <div class="rc-tab" onclick="tab(this,'zag')">Zagueiros</div>
+        <div class="rc-tab" onclick="tab(this,'gol')">Goleiros</div>
+      </div>
+
+      <!-- ATACANTES -->
+      <div class="rc-body" id="t-ata">
+        <div class="rc-row top">
+          <div class="rc-pos g">1</div>
+          <div class="rc-av" style="background:#E02020">VJ</div>
+          <div class="rc-info">
+            <div class="rc-name">Vinicius Jr.</div>
+            <div class="rc-meta">Flamengo <span class="price val">C$14.2</span></div>
+          </div>
+          <div class="mu easy">× CUI ↑</div>
+          <div class="sp"><div class="sp-val hi">9.1</div><div class="sp-lbl">score</div></div>
+        </div>
+        <div class="rc-row top">
+          <div class="rc-pos g">2</div>
+          <div class="rc-av" style="background:#006437">GF</div>
+          <div class="rc-info">
+            <div class="rc-name">Gabi Ferreira</div>
+            <div class="rc-meta">Internacional <span class="price val">C$8.4</span></div>
+          </div>
+          <div class="mu easy">× COR ↑</div>
+          <div class="sp"><div class="sp-val hi">8.7</div><div class="sp-lbl">score</div></div>
+        </div>
+        <div class="rc-row">
+          <div class="rc-pos">3</div>
+          <div class="rc-av" style="background:#1E3A8A">EN</div>
+          <div class="rc-info">
+            <div class="rc-name">Endrick</div>
+            <div class="rc-meta">Palmeiras <span class="price">C$13.8</span></div>
+          </div>
+          <div class="mu easy">× BAH ↑</div>
+          <div class="sp"><div class="sp-val hi">8.4</div><div class="sp-lbl">score</div></div>
+        </div>
+        <div class="rc-row">
+          <div class="rc-pos">4</div>
+          <div class="rc-av" style="background:#4C1D95">PR</div>
+          <div class="rc-info">
+            <div class="rc-name">Pedro Raul</div>
+            <div class="rc-meta">Botafogo <span class="price val">C$9.1</span></div>
+          </div>
+          <div class="mu easy">× VAS ↑</div>
+          <div class="sp"><div class="sp-val hi">7.9</div><div class="sp-lbl">score</div></div>
+        </div>
+        <div class="rc-row">
+          <div class="rc-pos">5</div>
+          <div class="rc-av" style="background:#C8A200">LU</div>
+          <div class="rc-info">
+            <div class="rc-name">Luciano</div>
+            <div class="rc-meta">São Paulo <span class="price">C$11.2</span></div>
+          </div>
+          <div class="mu mid">× FOR →</div>
+          <div class="sp"><div class="sp-val mid">6.8</div><div class="sp-lbl">score</div></div>
+        </div>
+      </div><!-- /ata -->
+
+      <!-- MEIAS -->
+      <div class="rc-body" id="t-mei" style="display:none">
+        <div class="rc-row top">
+          <div class="rc-pos g">1</div>
+          <div class="rc-av" style="background:#006437">BG</div>
+          <div class="rc-info"><div class="rc-name">Bruno Guimarães</div><div class="rc-meta">Flamengo <span class="price val">C$12.1</span></div></div>
+          <div class="mu easy">× CUI ↑</div>
+          <div class="sp"><div class="sp-val hi">9.0</div><div class="sp-lbl">score</div></div>
+        </div>
+        <div class="rc-row top">
+          <div class="rc-pos g">2</div>
+          <div class="rc-av" style="background:#1E3A8A">GS</div>
+          <div class="rc-info"><div class="rc-name">Gustavo Scarpa</div><div class="rc-meta">Botafogo <span class="price val">C$7.8</span></div></div>
+          <div class="mu easy">× VAS ↑</div>
+          <div class="sp"><div class="sp-val hi">8.5</div><div class="sp-lbl">score</div></div>
+        </div>
+        <div class="rc-row">
+          <div class="rc-pos">3</div>
+          <div class="rc-av" style="background:#92400E">RM</div>
+          <div class="rc-info"><div class="rc-name">Raphael Veiga</div><div class="rc-meta">Palmeiras <span class="price">C$10.9</span></div></div>
+          <div class="mu mid">× CRU →</div>
+          <div class="sp"><div class="sp-val mid">6.9</div><div class="sp-lbl">score</div></div>
+        </div>
+      </div><!-- /mei -->
+
+      <!-- LATERAIS -->
+      <div class="rc-body" id="t-lat" style="display:none">
+        <div class="rc-row top">
+          <div class="rc-pos g">1</div>
+          <div class="rc-av" style="background:#006437">DS</div>
+          <div class="rc-info"><div class="rc-name">Daniel Alves</div><div class="rc-meta">Internacional <span class="price val">C$6.2</span></div></div>
+          <div class="mu easy">× COR ↑</div>
+          <div class="sp"><div class="sp-val hi">8.2</div><div class="sp-lbl">score</div></div>
+        </div>
+        <div class="rc-row top">
+          <div class="rc-pos g">2</div>
+          <div class="rc-av" style="background:#E02020">MF</div>
+          <div class="rc-info"><div class="rc-name">Matheuzinho</div><div class="rc-meta">Flamengo <span class="price val">C$5.8</span></div></div>
+          <div class="mu easy">× CUI ↑</div>
+          <div class="sp"><div class="sp-val hi">7.8</div><div class="sp-lbl">score</div></div>
+        </div>
+      </div><!-- /lat -->
+
+      <!-- ZAGUEIROS -->
+      <div class="rc-body" id="t-zag" style="display:none">
+        <div class="rc-row top">
+          <div class="rc-pos g">1</div>
+          <div class="rc-av" style="background:#1E3A8A">LE</div>
+          <div class="rc-info"><div class="rc-name">Léo Pereira</div><div class="rc-meta">Flamengo <span class="price val">C$8.4</span></div></div>
+          <div class="mu easy">× CUI ↑</div>
+          <div class="sp"><div class="sp-val hi">8.0</div><div class="sp-lbl">score</div></div>
+        </div>
+        <div class="rc-row top">
+          <div class="rc-pos g">2</div>
+          <div class="rc-av" style="background:#006437">VH</div>
+          <div class="rc-info"><div class="rc-name">Victor Cuesta</div><div class="rc-meta">Internacional <span class="price val">C$5.9</span></div></div>
+          <div class="mu easy">× COR ↑</div>
+          <div class="sp"><div class="sp-val hi">7.6</div><div class="sp-lbl">score</div></div>
+        </div>
+      </div><!-- /zag -->
+
+      <!-- GOLEIROS -->
+      <div class="rc-body" id="t-gol" style="display:none">
+        <div class="rc-row top">
+          <div class="rc-pos g">1</div>
+          <div class="rc-av" style="background:#E02020">RA</div>
+          <div class="rc-info"><div class="rc-name">Rossi</div><div class="rc-meta">Flamengo <span class="price val">C$6.8</span></div></div>
+          <div class="mu easy">× CUI ↑</div>
+          <div class="sp"><div class="sp-val hi">8.1</div><div class="sp-lbl">score</div></div>
+        </div>
+        <div class="rc-row top">
+          <div class="rc-pos g">2</div>
+          <div class="rc-av" style="background:#006437">FA</div>
+          <div class="rc-info"><div class="rc-name">Fábio</div><div class="rc-meta">Internacional <span class="price val">C$5.1</span></div></div>
+          <div class="mu easy">× COR ↑</div>
+          <div class="sp"><div class="sp-val hi">7.7</div><div class="sp-lbl">score</div></div>
+        </div>
+      </div><!-- /gol -->
+
+      <!-- SCORE KEY — explica o score em 3 números, sem jargão -->
+      <div class="rc-score-key">
+        <div class="sk-item">
+          <div class="sk-pct">50%</div>
+          <div class="sk-lbl">Chance de pontuar</div>
+        </div>
+        <div style="width:1px;background:var(--border);align-self:stretch;"></div>
+        <div class="sk-item">
+          <div class="sk-pct">30%</div>
+          <div class="sk-lbl">Fase atual</div>
+        </div>
+        <div style="width:1px;background:var(--border);align-self:stretch;"></div>
+        <div class="sk-item">
+          <div class="sk-pct">20%</div>
+          <div class="sk-lbl">Adversário desta semana</div>
+        </div>
+      </div>
+
+    </div><!-- /rc -->
+  </div><!-- /hero-r -->
+
+</div><!-- /hero -->
+
+<!-- ════════════════════════════════════════════════
+     PROOF STRIP — abaixo do hero, confirmação rápida
+════════════════════════════════════════════════ -->
+<div class="proof-strip">
+  <div class="ps-inner">
+    <div class="ps-item">
+      <div class="ps-num">68%</div>
+      <div class="ps-info">
+        <div class="ps-label">dos jogadores indicados</div>
+        <div class="ps-sub">pontuaram acima da média do Cartola</div>
+      </div>
+    </div>
+    <div class="ps-div"></div>
+    <div class="ps-item">
+      <div class="ps-num">13.8</div>
+      <div class="ps-info">
+        <div class="ps-label">pts médios — top 3 na Rodada 7</div>
+        <div class="ps-sub">vs 8.2 da média geral do Cartola</div>
+      </div>
+    </div>
+    <div class="ps-div"></div>
+    <div class="ps-item">
+      <div class="ps-num">312</div>
+      <div class="ps-info">
+        <div class="ps-label">jogadores analisados</div>
+        <div class="ps-sub">toda rodada, automaticamente</div>
+      </div>
+    </div>
+    <div class="ps-div"></div>
+    <div class="ps-item">
+      <div class="ps-num">4ª</div>
+      <div class="ps-info">
+        <div class="ps-label">lista nova toda quarta-feira</div>
+        <div class="ps-sub">antes do deadline de quinta</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     RODADA 7 — O QUE ACONTECEU
+     Prova detalhada com nomes reais e pontos reais
+════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-badge">Rodada 7 — resultado real</div>
+  <h2 class="sec-title">O MODELO INDICOU.<br>OS NÚMEROS CONFIRMARAM.</h2>
+  <p class="sec-sub">
+    Os 3 jogadores no topo do ranking da semana passada. Veja o que aconteceu no Cartola de verdade.
+  </p>
+
+  <div class="proof-table">
+    <div class="pt-head">
+      <div>#</div>
+      <div>Jogador indicado pelo modelo</div>
+      <div style="text-align:center">Score</div>
+      <div style="text-align:center">Pts Cartola</div>
+      <div style="text-align:center">vs Média</div>
+    </div>
+    <div class="pt-row">
+      <div class="pt-n">1</div>
+      <div class="pt-player">
+        <div class="pt-name">Vinicius Jr. — Flamengo</div>
+        <div class="pt-club">Atacante · C$14.2</div>
+      </div>
+      <div class="pt-score">9.1</div>
+      <div class="pt-pts">14.2</div>
+      <div class="pt-diff"><span class="diff-pill">↑ +6.0</span></div>
+    </div>
+    <div class="pt-row">
+      <div class="pt-n">2</div>
+      <div class="pt-player">
+        <div class="pt-name">Gabi Ferreira — Internacional</div>
+        <div class="pt-club">Atacante · C$8.4</div>
+      </div>
+      <div class="pt-score">8.7</div>
+      <div class="pt-pts">13.1</div>
+      <div class="pt-diff"><span class="diff-pill">↑ +4.9</span></div>
+    </div>
+    <div class="pt-row">
+      <div class="pt-n">3</div>
+      <div class="pt-player">
+        <div class="pt-name">Bruno Guimarães — Flamengo</div>
+        <div class="pt-club">Meia · C$12.1</div>
+      </div>
+      <div class="pt-score">9.0</div>
+      <div class="pt-pts">14.1</div>
+      <div class="pt-diff"><span class="diff-pill">↑ +5.9</span></div>
+    </div>
+    <div class="pt-footer">
+      <div class="pt-avg">
+        Média do top 3 esta rodada: <strong>13.8 pts</strong>
+      </div>
+      <div class="pt-avg">
+        Média geral do Cartola: <strong>8.2 pts</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMO FUNCIONA — 3 passos sem jargão -->
+  <div class="sec-badge" style="margin-top:56px;">Como funciona</div>
+  <h2 class="sec-title">3 PASSOS.<br>1 LISTA PRONTA.</h2>
+  <p class="sec-sub">Você não precisa entender estatística para usar o Futedata. O modelo faz o trabalho.</p>
+
+  <div class="how-grid">
+    <div class="hw">
+      <div class="hw-num">1</div>
+      <div class="hw-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00843D" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div class="hw-title">Toda quarta às 10h</div>
+      <div class="hw-desc">
+        O modelo analisa os 312 jogadores do Cartola. Calcula quem tem mais chance de pontuar no jogo desta rodada, considerando o adversário específico.
+      </div>
+      <span class="hw-chip">automático · toda semana</span>
+    </div>
+    <div class="hw">
+      <div class="hw-num">2</div>
+      <div class="hw-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00843D" stroke-width="2.2" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+      </div>
+      <div class="hw-title">Você recebe o top 5 por posição</div>
+      <div class="hw-desc">
+        Atacantes, meias, laterais, zagueiros, goleiros. Cada um com um score de 0 a 10 e o alerta de quem evitar — mesmo que seja o mais escalado da semana.
+      </div>
+      <span class="hw-chip">por email · antes da quinta</span>
+    </div>
+    <div class="hw">
+      <div class="hw-num">3</div>
+      <div class="hw-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00843D" stroke-width="2.2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="hw-title">Copie no Cartola antes da quinta</div>
+      <div class="hw-desc">
+        Use a lista como ponto de partida. Onde o score é alto e o alerta é verde: escalou. Onde o alerta é vermelho: pense duas vezes, mesmo que o nome seja grande.
+      </div>
+      <span class="hw-chip">deadline: quinta 19h</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     ALERTA SECTION — o diferencial mais forte
+     "Saber quem EVITAR vale mais do que saber quem escalar"
+════════════════════════════════════════════════ -->
+<div class="alert-section">
+  <div class="as-inner">
+    <div class="as-l">
+      <div class="as-badge">o diferencial do futedata</div>
+      <h2 class="as-title">QUEM <span>EVITAR</span><br>VALE MAIS<br>DO QUE QUEM ESCALAR.</h2>
+      <p class="as-sub">
+        Todo influenciador de Cartola te diz quem escalar. O Futedata é um dos únicos lugares que te diz quem <strong style="color:#fff">evitar</strong> — com o dado por trás da recomendação.
+      </p>
+      <p class="as-proof">
+        Rodada 7: o modelo penalizou Hulk (score 4.8). Média do Cartola nele: 4.1 pts.
+        Quem não escalou economizou os cartoletas e não perdeu pontos.
+      </p>
+    </div>
+
+    <div class="as-r">
+      <!-- EVITAR -->
+      <div class="ac danger">
+        <div class="ac-header">
+          <div class="ac-icon">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div>
+            <div class="ac-name">Hulk — Atlético-MG</div>
+            <div class="ac-club">Atacante · C$14.8 · 38% dos times</div>
+          </div>
+          <div class="ac-badge">score 5.1</div>
+        </div>
+        <div class="ac-reason">
+          Enfrenta o Fortaleza — melhor defesa do campeonato. O adversário penaliza demais o score nessa rodada. Muito escalado, risco alto.
+        </div>
+        <div class="ac-data">
+          <span class="acd">xGA Fortaleza: 0.62/jogo</span>
+          <span class="acd">melhor defesa do camp.</span>
+        </div>
+      </div>
+
+      <!-- ESCALAR — contraste -->
+      <div class="ac safe">
+        <div class="ac-header">
+          <div class="ac-icon">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <div class="ac-name">Gabi Ferreira — Internacional</div>
+            <div class="ac-club">Atacante · C$8.4 · 12% dos times</div>
+          </div>
+          <div class="ac-badge">score 8.7</div>
+        </div>
+        <div class="ac-reason">
+          Enfrenta o Corinthians — pior defesa do campeonato. Preço baixo, adversário favorável, fase boa. O modelo vê aqui uma das melhores relações custo-benefício da rodada.
+        </div>
+        <div class="ac-data">
+          <span class="acd">xGA Corinthians: 1.31/jogo</span>
+          <span class="acd">pior defesa do camp.</span>
+        </div>
+      </div>
+
+      <p style="text-align:center;font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,.3);margin-top:4px;">
+        Toda rodada tem um alerta e um pick oculto como esse.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     CTA FINAL
+════════════════════════════════════════════════ -->
+<div class="cta-section">
+  <div class="cta-badge">comece agora · é gratuito</div>
+  <h2 class="cta-title">RECEBA O RANKING DA<br><span>RODADA 8</span> AGORA.</h2>
+  <p class="cta-sub">
+    Cadastre-se grátis e receba o top 5 por posição por email toda quarta-feira — com o alerta de quem evitar nessa rodada.
+  </p>
+  <div class="cta-form">
+    <input class="cta-input" type="email" placeholder="seu@email.com">
+    <button class="cta-btn">Ver o ranking</button>
+  </div>
+  <div class="cta-fn">
+    <span>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      Gratuito, sem cartão
+    </span>
+    <span>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+      Ranking novo toda quarta
+    </span>
+    <span>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+      Sem spam
+    </span>
+  </div>
+</div>
+
+<!-- ════════ FOOTER ════════ -->
+<footer>
+  <div class="ft-logo">FUTE<span>DATA</span></div>
+  <div class="ft-text">futedata.com.br · +18 · Apostas envolvem risco · Jogue com responsabilidade · CVV: 188</div>
+</footer>
+
+<script>
+function tab(el, id) {
+  document.querySelectorAll('.rc-tab').forEach(t => t.classList.remove('on'));
+  document.querySelectorAll('.rc-body').forEach(b => b.style.display = 'none');
+  el.classList.add('on');
+  document.getElementById('t-' + id).style.display = 'block';
+}
+</script>
+
+</body>
+</html>

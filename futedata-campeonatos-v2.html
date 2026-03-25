@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Futedata — Brasileirão & Copa do Brasil 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+:root{
+  --verde:    #00843D; --verde-d:  #005C2B; --verde-l:  #00C45A;
+  --verde-10: rgba(0,132,61,.12); --verde-20: rgba(0,132,61,.22);
+  --am:       #F5C800; --am-d:     #C8A200; --am-10:    rgba(245,200,0,.10);
+  --red:      #EF4444; --red-10:   rgba(239,68,68,.12); --red-20: rgba(239,68,68,.22);
+  --blue:     #3B82F6; --blue-10:  rgba(59,130,246,.12);
+  --bg:       #0D0D0D; --bg-2:     #141414; --bg-3:     #1A1A1A; --bg-4:     #212121;
+  --border:   rgba(255,255,255,.08); --border-2: rgba(255,255,255,.14);
+  --white:    #FFFFFF; --k80: rgba(255,255,255,.80); --k60: rgba(255,255,255,.60);
+  --k40: rgba(255,255,255,.40); --k20: rgba(255,255,255,.20); --k10: rgba(255,255,255,.10);
+  --k06: rgba(255,255,255,.06);
+}
+body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--k80);font-size:14px;line-height:1.5;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+button{font-family:inherit;cursor:pointer;border:none;}
+
+/* TOPBAR */
+.topbar{background:var(--verde-d);padding:6px 24px;display:flex;align-items:center;justify-content:center;gap:20px;}
+.tb-t{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,.6);letter-spacing:.02em;}
+.tb-p{display:inline-flex;align-items:center;gap:5px;background:var(--am);color:var(--verde-d);font-family:'DM Mono',monospace;font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;letter-spacing:.03em;}
+.tb-dot{width:5px;height:5px;border-radius:50%;background:var(--verde-d);animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:300;background:rgba(13,13,13,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.hd{max-width:1440px;margin:0 auto;padding:0 32px;height:58px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-family:'Bebas Neue',cursive;font-size:24px;letter-spacing:.04em;color:#fff;}
+.logo span{color:var(--verde);}
+.nav{display:flex;align-items:center;gap:6px;}
+.nav a{font-size:12px;font-weight:600;color:var(--k40);padding:6px 12px;border-radius:6px;transition:color .2s,background .2s;}
+.nav a:hover,.nav a.on{color:#fff;background:var(--k06);}
+.nav-cta{background:var(--verde);color:#fff!important;font-size:12px;font-weight:700;padding:7px 16px;border-radius:7px;transition:background .2s!important;}
+.nav-cta:hover{background:var(--verde-d)!important;}
+
+/* COMPETITION SWITCHER */
+.comp-switcher{background:var(--bg-2);border-bottom:1px solid var(--border);}
+.cs-inner{max-width:1440px;margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:0;}
+.cs-tab{display:flex;align-items:center;gap:10px;padding:14px 24px;font-size:13px;font-weight:700;color:var(--k40);cursor:pointer;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;}
+.cs-tab:hover{color:var(--k80);}
+.cs-tab.on{color:#fff;border-bottom-color:var(--verde);}
+.cs-badge{font-family:'DM Mono',monospace;font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;background:var(--k10);color:var(--k40);}
+.cs-tab.on .cs-badge{background:var(--verde-10);color:var(--verde-l);}
+.cs-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
+.cs-update{display:flex;align-items:center;gap:5px;font-family:'DM Mono',monospace;font-size:10px;color:var(--verde-l);}
+.cs-dot{width:5px;height:5px;border-radius:50%;background:var(--verde-l);animation:pulse 2s ease-in-out infinite;}
+
+/* ═══════════════════════════════
+   EDITORIAL HERO — the new element
+═══════════════════════════════ */
+.editorial-hero{
+  border-bottom:1px solid var(--border);
+  padding:0;overflow:hidden;
+}
+.eh-inner{
+  max-width:1440px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+}
+
+/* Hero headline card */
+.eh-main{
+  padding:28px 32px 24px;
+  border-right:1px solid var(--border);
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.eh-eyebrow{
+  font-family:'DM Mono',monospace;font-size:10px;font-weight:700;
+  color:var(--verde-l);letter-spacing:.08em;text-transform:uppercase;
+  margin-bottom:14px;display:flex;align-items:center;gap:6px;
+}
+.eh-dot{width:5px;height:5px;border-radius:50%;background:var(--verde-l);}
+.eh-headline{
+  font-family:'Bebas Neue',cursive;
+  font-size:36px;line-height:1.05;
+  color:#fff;letter-spacing:.02em;
+  margin-bottom:16px;
+}
+.eh-headline .accent{color:var(--am);}
+.eh-headline .danger{color:var(--red);}
+.eh-sub{font-size:13px;color:var(--k40);line-height:1.55;max-width:340px;}
+
+/* Insight stat cards */
+.eh-stat{
+  padding:24px 28px;
+  border-right:1px solid var(--border);
+  display:flex;flex-direction:column;justify-content:space-between;
+  cursor:pointer;transition:background .2s;
+}
+.eh-stat:hover{background:var(--bg-3);}
+.eh-stat:last-child{border-right:none;}
+.eh-label{
+  font-family:'DM Mono',monospace;font-size:10px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;
+  margin-bottom:10px;
+}
+.eh-label.lucky{color:var(--red);}
+.eh-label.unlucky{color:var(--verde-l);}
+.eh-label.neutral{color:var(--am);}
+.eh-team-name{font-size:18px;font-weight:800;color:#fff;margin-bottom:4px;}
+.eh-big{
+  font-family:'Bebas Neue',cursive;font-size:52px;
+  line-height:1;letter-spacing:.01em;margin-bottom:4px;
+}
+.eh-big.pos{color:var(--verde-l);}
+.eh-big.neg{color:var(--red);}
+.eh-big.am{color:var(--am);}
+.eh-desc{font-size:12px;color:var(--k40);line-height:1.4;}
+.eh-cartola-tag{
+  display:inline-flex;align-items:center;gap:5px;
+  background:var(--am-10);border:1px solid rgba(200,162,0,.2);
+  padding:4px 10px;border-radius:20px;margin-top:10px;
+  font-size:11px;font-weight:700;color:var(--am-d);
+}
+
+/* ═══════════════════════════════
+   PAGE LAYOUT
+═══════════════════════════════ */
+.page{display:none;}
+.page.on{display:block;}
+.layout{max-width:1440px;margin:0 auto;padding:24px 32px 48px;display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:start;}
+
+/* CARDS */
+.card{background:var(--bg-2);border:1px solid var(--border);border-radius:12px;overflow:hidden;animation:fadein .35s ease both;}
+.card:nth-child(2){animation-delay:.06s;}
+.card:nth-child(3){animation-delay:.12s;}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.card-head{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.card-title{font-family:'Bebas Neue',cursive;font-size:18px;letter-spacing:.04em;color:#fff;}
+.card-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--k40);margin-top:2px;}
+.card-badge{font-family:'DM Mono',monospace;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;background:var(--verde-10);color:var(--verde-l);}
+.seg{display:flex;gap:0;background:var(--bg-3);border-radius:7px;padding:3px;}
+.seg button{padding:5px 14px;border-radius:5px;font-size:12px;font-weight:700;color:var(--k40);background:transparent;transition:all .2s;}
+.seg button.on{background:var(--bg-2);color:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);}
+
+/* ═══════════════════════════════
+   STANDINGS TABLE
+═══════════════════════════════ */
+.st{width:100%;border-collapse:collapse;}
+.st thead th{padding:8px 10px;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;color:var(--k40);letter-spacing:.04em;text-align:center;border-bottom:1px solid var(--border);background:var(--bg-3);white-space:nowrap;}
+.st thead th.left{text-align:left;}
+.st thead .xg-group{background:rgba(0,132,61,.06);color:var(--verde-l);border-bottom:1px solid rgba(0,132,61,.2);}
+.st tbody tr{border-bottom:1px solid var(--border);transition:background .15s;cursor:pointer;}
+.st tbody tr:last-child{border-bottom:none;}
+.st tbody tr:hover{background:var(--bg-3);}
+.st tbody tr.zone-cl td:first-child{border-left:3px solid var(--blue);}
+.st tbody tr.zone-lib td:first-child{border-left:3px solid var(--verde);}
+.st tbody tr.zone-rel td:first-child{border-left:3px solid var(--red);}
+.st td{padding:9px 10px;text-align:center;font-size:13px;}
+.st td.left{text-align:left;}
+.pos{font-family:'DM Mono',monospace;font-size:12px;font-weight:700;color:var(--k40);width:28px;}
+.pos.g{color:var(--verde-l);}
+.team-cell{display:flex;align-items:center;gap:10px;min-width:180px;}
+.team-badge{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:8px;font-weight:700;color:#fff;flex-shrink:0;}
+.team-name{font-size:13px;font-weight:700;color:#fff;}
+
+/* MICRO LABELS — the new element connecting to Cartola */
+.micro-label{
+  display:inline-flex;align-items:center;gap:3px;
+  padding:2px 6px;border-radius:4px;
+  font-family:'DM Mono',monospace;font-size:9px;font-weight:700;
+  white-space:nowrap;
+}
+.ml-up{background:rgba(0,196,90,.12);color:var(--verde-l);}
+.ml-down{background:var(--red-10);color:var(--red);}
+.ml-lucky{background:var(--am-10);color:var(--am-d);}
+.ml-atk{background:rgba(59,130,246,.12);color:#60A5FA;}
+.ml-def{background:rgba(147,51,234,.12);color:#C084FC;}
+.ml-weak{background:var(--red-10);color:var(--red);}
+
+.pts{font-family:'DM Mono',monospace;font-size:14px;font-weight:700;color:#fff;}
+.num{font-family:'DM Mono',monospace;font-size:12px;color:var(--k60);}
+.xg-col{background:rgba(0,132,61,.04);font-family:'DM Mono',monospace;font-size:12px;color:var(--verde-l);font-weight:600;}
+.delta{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;}
+.delta.pos{color:#4ADE80;}
+.delta.neg{color:var(--red);}
+.delta.neu{color:var(--k40);}
+.form{display:flex;gap:3px;justify-content:center;}
+.f{width:16px;height:16px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:8px;font-weight:700;}
+.f.w{background:var(--verde);color:#fff;}
+.f.d{background:var(--am-10);color:var(--am);}
+.f.l{background:var(--red-10);color:var(--red);}
+
+/* Spotlight panel */
+.spotlight{display:none;padding:16px 20px;border-top:1px solid var(--border);background:var(--bg-3);}
+.spotlight.on{display:block;}
+.sp-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.sp-title{font-family:'Bebas Neue',cursive;font-size:18px;color:#fff;}
+.sp-cartola{font-size:12px;color:var(--am);font-weight:700;}
+.sp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;}
+.sp-stat{background:var(--bg-4);border-radius:7px;padding:10px 12px;}
+.sp-val{font-family:'DM Mono',monospace;font-size:18px;font-weight:700;color:#fff;}
+.sp-val.g{color:var(--verde-l);}
+.sp-val.y{color:var(--am);}
+.sp-val.r{color:var(--red);}
+.sp-lbl{font-size:11px;color:var(--k40);margin-top:2px;}
+.sp-cartola-box{
+  background:var(--am-10);border:1px solid rgba(200,162,0,.2);
+  border-radius:8px;padding:10px 14px;
+  font-size:12px;color:var(--k60);line-height:1.5;
+}
+.sp-cartola-box strong{color:var(--am);}
+
+/* Zone legend */
+.zone-legend{display:flex;align-items:center;gap:20px;padding:10px 20px;border-top:1px solid var(--border);background:var(--bg-3);flex-wrap:wrap;}
+.zl-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--k40);}
+.zl-dot{width:10px;height:10px;border-radius:2px;}
+
+/* xG tip */
+.xg-tip{padding:10px 20px;border-top:1px solid var(--border);background:rgba(0,132,61,.04);display:flex;align-items:center;gap:10px;}
+.xg-tip-icon{width:20px;height:20px;border-radius:5px;background:var(--verde-10);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.xg-tip-text{font-size:12px;color:var(--k40);}
+.xg-tip-text strong{color:var(--verde-l);}
+
+/* ═══════════════════════════════
+   RESULTS
+═══════════════════════════════ */
+.result-row{display:grid;grid-template-columns:80px 1fr auto 1fr 80px;align-items:center;gap:8px;padding:11px 20px;border-bottom:1px solid var(--border);transition:background .15s;cursor:pointer;}
+.result-row:last-child{border-bottom:none;}
+.result-row:hover{background:var(--bg-3);}
+.rr-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--k40);}
+.rr-team{font-size:13px;font-weight:700;color:#fff;}
+.rr-team.right{text-align:right;}
+.rr-score{text-align:center;}
+.rr-pts{font-family:'DM Mono',monospace;font-size:18px;font-weight:700;color:#fff;}
+.rr-sep{color:var(--k20);font-size:14px;margin:0 6px;}
+.rr-xg{font-family:'DM Mono',monospace;font-size:10px;color:var(--k40);margin-top:3px;}
+.rr-xg strong{color:var(--verde-l);}
+/* injustice tag — when xG diverges significantly from result */
+.rr-verdict{font-family:'DM Mono',monospace;font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;margin-top:3px;}
+.rr-verdict.fair{background:var(--verde-10);color:var(--verde-l);}
+.rr-verdict.injust{background:var(--red-10);color:var(--red);}
+.rr-verdict.lucky{background:var(--am-10);color:var(--am-d);}
+
+/* ═══════════════════════════════
+   SIDEBAR
+═══════════════════════════════ */
+.sidebar{display:flex;flex-direction:column;gap:20px;}
+.scorer-row{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--border);transition:background .15s;}
+.scorer-row:last-child{border-bottom:none;}
+.scorer-row:hover{background:var(--bg-3);}
+.sc-rank{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;color:var(--k40);width:20px;flex-shrink:0;}
+.sc-av{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:9px;font-weight:700;color:#fff;flex-shrink:0;}
+.sc-info{flex:1;}
+.sc-name{font-size:13px;font-weight:700;color:#fff;}
+.sc-club{font-size:11px;color:var(--k40);}
+.bar-wrap{margin-top:4px;}
+.bar{height:3px;border-radius:2px;background:linear-gradient(90deg,var(--verde),var(--verde-l));transition:width .6s ease;}
+.sc-data{text-align:right;}
+.sc-xg{font-family:'DM Mono',monospace;font-size:14px;font-weight:700;color:var(--verde-l);}
+.sc-goals{font-family:'DM Mono',monospace;font-size:10px;color:var(--k40);}
+.fixture-row{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--border);}
+.fixture-row:last-child{border-bottom:none;}
+.fx-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--k40);width:52px;flex-shrink:0;}
+.fx-teams{flex:1;}
+.fx-match{font-size:12px;font-weight:700;color:#fff;}
+.fx-time{font-family:'DM Mono',monospace;font-size:10px;color:var(--k40);}
+.fx-prob{display:flex;gap:4px;align-items:center;}
+.fx-p{font-family:'DM Mono',monospace;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;}
+.fx-p.h{background:var(--verde-10);color:var(--verde-l);}
+.fx-p.d{background:var(--am-10);color:var(--am);}
+.fx-p.a{background:var(--red-10);color:var(--red);}
+
+/* ═══════════════════════════════
+   COPA HERO — narrative first
+═══════════════════════════════ */
+.copa-hero{
+  border-bottom:1px solid var(--border);
+}
+.copa-hero-inner{
+  max-width:1440px;margin:0 auto;
+  display:grid;grid-template-columns:2fr 1fr 1fr;
+}
+.ch-main{
+  padding:28px 32px 24px;
+  border-right:1px solid var(--border);
+}
+.ch-eyebrow{font-family:'DM Mono',monospace;font-size:10px;font-weight:700;color:var(--am);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px;}
+.ch-headline{font-family:'Bebas Neue',cursive;font-size:36px;line-height:1.05;color:#fff;letter-spacing:.02em;margin-bottom:10px;}
+.ch-headline .accent{color:var(--am);}
+.ch-sub{font-size:13px;color:var(--k40);line-height:1.55;max-width:380px;}
+.ch-stat{padding:24px 28px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:6px;justify-content:center;}
+.ch-stat:last-child{border-right:none;}
+.ch-stat-val{font-family:'Bebas Neue',cursive;font-size:48px;line-height:1;color:var(--verde-l);}
+.ch-stat-val.am{color:var(--am);}
+.ch-stat-label{font-size:12px;color:var(--k40);line-height:1.4;}
+.ch-stat-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--k20);}
+
+/* ═══════════════════════════════
+   COPA BRACKET — narrative version
+═══════════════════════════════ */
+.bracket-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:16px;padding:20px;
+}
+.tie-card{
+  background:var(--bg-3);border:1px solid var(--border);
+  border-radius:10px;overflow:hidden;
+  transition:border-color .2s;
+}
+.tie-card:hover{border-color:var(--border-2);}
+
+/* TIE NARRATIVE HEADER */
+.tie-status{
+  padding:8px 12px;
+  font-family:'DM Mono',monospace;font-size:10px;font-weight:700;
+  letter-spacing:.04em;text-transform:uppercase;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.tie-status.dominant{background:var(--verde-10);color:var(--verde-l);}
+.tie-status.balanced{background:var(--am-10);color:var(--am-d);}
+.tie-status.upset{background:var(--red-10);color:var(--red);}
+.tie-status.open{background:var(--blue-10);color:#60A5FA;}
+.tie-phase{font-size:9px;color:var(--k20);}
+
+/* teams inside tie */
+.tie-team{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 12px;
+  border-bottom:1px solid var(--border);
+  transition:background .15s;
+}
+.tie-team:last-of-type{border-bottom:none;}
+.tie-team.leading{background:rgba(0,132,61,.06);}
+.tie-av{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:8px;font-weight:700;color:#fff;flex-shrink:0;}
+.tie-name{flex:1;font-size:13px;font-weight:700;color:#fff;}
+.tie-name.trailing{color:var(--k40);}
+.tie-score-wrap{text-align:right;}
+.tie-sc{font-family:'DM Mono',monospace;font-size:16px;font-weight:700;color:#fff;}
+.tie-sc.winner{color:var(--verde-l);}
+.tie-xg{font-family:'DM Mono',monospace;font-size:9px;color:var(--k20);margin-top:1px;}
+
+/* probability bar */
+.tie-prob-bar{padding:8px 12px;border-top:1px solid var(--border);background:var(--bg-4);}
+.prob-bar-track{height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-bottom:5px;}
+.prob-bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--verde),var(--verde-l));transition:width .6s ease;}
+.prob-labels{display:flex;justify-content:space-between;}
+.prob-pct{font-family:'DM Mono',monospace;font-size:10px;font-weight:700;}
+.prob-pct.h{color:var(--verde-l);}
+.prob-pct.a{color:var(--k40);}
+
+/* NEXT ACTION — narrative sentence */
+.tie-action{
+  padding:8px 12px;
+  background:var(--bg-4);
+  border-top:1px solid var(--border);
+  font-size:11px;color:var(--k40);line-height:1.4;
+}
+.tie-action strong{color:#fff;}
+
+/* ═══════════════════════════════
+   COPA ARTILHARIA
+═══════════════════════════════ */
+.art-table{width:100%;border-collapse:collapse;}
+.art-table th{padding:8px 14px;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;color:var(--k40);letter-spacing:.04em;text-align:left;border-bottom:1px solid var(--border);background:var(--bg-3);}
+.art-table td{padding:9px 14px;border-bottom:1px solid var(--border);font-size:13px;}
+.art-table tr:last-child td{border-bottom:none;}
+.art-table tr:hover td{background:var(--bg-3);}
+.art-name{font-weight:700;color:#fff;}
+.art-club{font-size:11px;color:var(--k40);}
+.art-num{font-family:'DM Mono',monospace;font-size:13px;font-weight:700;}
+.art-num.g{color:var(--verde-l);}
+.art-num.y{color:var(--am);}
+.art-num.w{color:#fff;}
+
+/* Copa results */
+.copa-results-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+
+/* ═══════════════════════════════
+   RESPONSIVE
+═══════════════════════════════ */
+@media(max-width:1100px){
+  .layout{grid-template-columns:1fr;padding:16px;}
+  .eh-inner,.copa-hero-inner{grid-template-columns:1fr;}
+  .eh-stat:not(:first-child){border-top:1px solid var(--border);border-right:none;}
+  .bracket-grid{grid-template-columns:1fr 1fr;}
+  .sp-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:700px){
+  .hd{padding:0 16px;}
+  .layout{padding:12px 16px;}
+  .st thead th.hide-mob,.st td.hide-mob{display:none;}
+  .eh-inner{grid-template-columns:1fr;}
+  .bracket-grid{grid-template-columns:1fr;}
+  .copa-results-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span class="tb-t">Brasileirão 2026 · Rodada 8 completa</span>
+  <span class="tb-p"><span class="tb-dot"></span>AO VIVO</span>
+  <span class="tb-t">Copa do Brasil · Quartas de Final</span>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="hd">
+    <a href="#" class="logo">FUTE<span>DATA</span></a>
+    <nav class="nav">
+      <a href="#" class="on">Campeonatos</a>
+      <a href="#">Cartola</a>
+      <a href="#">Copa 2026</a>
+      <a href="#">Value Bets</a>
+      <a href="#" class="nav-cta">Ranking Cartola →</a>
+    </nav>
+  </div>
+</header>
+
+<!-- COMPETITION SWITCHER -->
+<div class="comp-switcher">
+  <div class="cs-inner">
+    <div class="cs-tab on" onclick="switchComp(this,'bra')">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+      Brasileirão Série A
+      <span class="cs-badge">Rodada 8</span>
+    </div>
+    <div class="cs-tab" onclick="switchComp(this,'copa')">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9H4.5a2.5 2.5 0 010-5H6"/><path d="M18 9h1.5a2.5 2.5 0 000-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0012 0V2z"/></svg>
+      Copa do Brasil
+      <span class="cs-badge">Quartas</span>
+    </div>
+    <div class="cs-right">
+      <div class="cs-update"><span class="cs-dot"></span>Atualizado há 12 min</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     BRASILEIRÃO
+═══════════════════════════════════════════ -->
+<div id="page-bra" class="page on">
+
+  <!-- EDITORIAL HERO -->
+  <div class="editorial-hero">
+    <div class="eh-inner">
+
+      <div class="eh-main">
+        <div>
+          <div class="eh-eyebrow"><span class="eh-dot"></span>Análise da Rodada 8</div>
+          <h1 class="eh-headline">
+            A TABELA<br>
+            <span class="accent">ESTÁ MENTINDO</span><br>
+            EM 4 POSIÇÕES.
+          </h1>
+          <p class="eh-sub">
+            O Botafogo merece 5 pontos a mais. O Vasco deve 4. O Fortaleza, o time mais subavaliado do campeonato, está 6 posições abaixo do que o desempenho justifica. Os dados mostram o que o placar esconde.
+          </p>
+        </div>
+        <div class="eh-cartola-tag" style="width:fit-content;margin-top:16px;">
+          📋 Impacto direto no Cartola — clique nos times para ver
+        </div>
+      </div>
+
+      <!-- STAT 1 — most unlucky -->
+      <div class="eh-stat" onclick="jumpToTeam('bot')">
+        <div>
+          <div class="eh-label unlucky">🍀 Mais azarado</div>
+          <div class="eh-team-name">Botafogo</div>
+        </div>
+        <div>
+          <div class="eh-big pos">+5.2</div>
+          <div class="eh-desc">pontos que o desempenho merecia e não veio. 9 pts reais, 14.2 xPTS.</div>
+        </div>
+        <div class="eh-cartola-tag">⚽ Atacantes do Bot podem explodir</div>
+      </div>
+
+      <!-- STAT 2 — most lucky / insight -->
+      <div class="eh-stat" onclick="jumpToTeam('for')">
+        <div>
+          <div class="eh-label neutral">📈 Mais subavaliado</div>
+          <div class="eh-team-name">Fortaleza</div>
+        </div>
+        <div>
+          <div class="eh-big pos">14.1</div>
+          <div class="eh-desc">xPTS — mas só 12 pontos reais. Melhor defesa do campeonato. xGA 5.2 por jogo.</div>
+        </div>
+        <div class="eh-cartola-tag">🛡 Goleiro e zagueiros do For são seguros</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <div style="display:flex;flex-direction:column;gap:20px;">
+
+      <!-- STANDINGS -->
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Classificação</div>
+            <div class="card-sub">xG · xGA · xPTS · ±PTS · micro-labels Cartola · clique no time</div>
+          </div>
+          <div class="seg" id="st-seg">
+            <button class="on" onclick="stView(this,'all')">Todos</button>
+            <button onclick="stView(this,'home')">Casa</button>
+            <button onclick="stView(this,'away')">Fora</button>
+          </div>
+        </div>
+        <div style="overflow-x:auto;">
+        <table class="st">
+          <thead>
+            <tr>
+              <th style="width:32px">#</th>
+              <th class="left" style="min-width:210px">Clube</th>
+              <th>J</th>
+              <th style="min-width:38px">PTS</th>
+              <th class="hide-mob">V</th>
+              <th class="hide-mob">E</th>
+              <th class="hide-mob">D</th>
+              <th class="hide-mob">GF</th>
+              <th class="hide-mob">GC</th>
+              <th class="xg-group hide-mob" title="Expected Goals">xG</th>
+              <th class="xg-group hide-mob" title="Expected Goals Against">xGA</th>
+              <th class="xg-group" title="Expected Points">xPTS</th>
+              <th class="xg-group" title="Diferença pts reais vs xPTS">±PTS</th>
+              <th>Forma</th>
+            </tr>
+          </thead>
+          <tbody id="standings-body"></tbody>
+        </table>
+        </div>
+
+        <div class="spotlight" id="spotlight">
+          <div class="sp-header">
+            <div class="sp-title" id="sp-title"></div>
+            <div class="sp-cartola" id="sp-cartola-tag"></div>
+          </div>
+          <div class="sp-grid" id="sp-grid"></div>
+          <div class="sp-cartola-box" id="sp-cartola-box"></div>
+        </div>
+
+        <div class="zone-legend">
+          <div class="zl-item"><div class="zl-dot" style="background:var(--blue)"></div>Libertadores (1–4)</div>
+          <div class="zl-item"><div class="zl-dot" style="background:var(--verde)"></div>Sul-Americana (5–6)</div>
+          <div class="zl-item"><div class="zl-dot" style="background:var(--red)"></div>Rebaixamento (17–20)</div>
+        </div>
+        <div class="xg-tip">
+          <div class="xg-tip-icon">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#00843D" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div class="xg-tip-text">
+            <strong>±PTS:</strong> verde = azarado (merecia mais). Vermelho = sortudo (tabela melhor que o desempenho). Times azarados tendem a subir. Times sortudos tendem a cair.
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULTADOS -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">Resultados Rodada 8</div>
+          <div class="card-sub">xG de cada jogo · veredito do modelo</div>
+        </div>
+        <div id="results-list"></div>
+      </div>
+
+    </div><!-- /main -->
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">Artilharia por xG</div>
+          <div class="card-sub">Expected goals acumulado · top 8</div>
+        </div>
+        <div id="top-xg-scorers"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">Rodada 9 — Próximos</div>
+          <div class="card-sub">Probabilidades pelo modelo</div>
+        </div>
+        <div id="fixtures"></div>
+      </div>
+
+      <!-- INSIGHT CARD — more prominent now -->
+      <div class="card" style="border-color:rgba(0,132,61,.3);">
+        <div class="card-head" style="background:var(--verde-10);">
+          <div class="card-title" style="color:var(--verde-l);">Insights do Modelo</div>
+          <div class="card-sub" style="color:var(--verde-l);opacity:.7">o que a tabela não diz</div>
+        </div>
+        <div style="padding:16px 20px;display:flex;flex-direction:column;gap:14px;">
+          <div style="background:var(--verde-10);border:1px solid var(--verde-20);border-radius:8px;padding:14px;">
+            <div style="font-family:'DM Mono',monospace;font-size:10px;font-weight:700;color:var(--verde-l);margin-bottom:6px;">🍀 MAIS AZARADO — DEVE SUBIR</div>
+            <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;">Botafogo — 9 pts reais</div>
+            <div style="font-size:12px;color:var(--k40);line-height:1.5;">xPTS 14.2. Merece estar 6 posições acima. Conversão de xG em gols está 38% abaixo da média do campeonato. Azarado — não ruim.</div>
+          </div>
+          <div style="background:var(--red-10);border:1px solid var(--red-20);border-radius:8px;padding:14px;">
+            <div style="font-family:'DM Mono',monospace;font-size:10px;font-weight:700;color:var(--red);margin-bottom:6px;">⚠ MAIS SORTUDO — RISCO DE QUEDA</div>
+            <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;">Vasco — 12 pts reais</div>
+            <div style="font-size:12px;color:var(--k40);line-height:1.5;">xPTS 7.8. A tabela superestima o Vasco em 4 pontos. Eficiência de gols acima da média há 4 rodadas é insustentável.</div>
+          </div>
+          <div style="background:var(--am-10);border:1px solid rgba(200,162,0,.2);border-radius:8px;padding:14px;">
+            <div style="font-family:'DM Mono',monospace;font-size:10px;font-weight:700;color:var(--am);margin-bottom:6px;">🛡 MELHOR DEFESA — PPDA 6.8</div>
+            <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;">Flamengo — pressão elite</div>
+            <div style="font-size:12px;color:var(--k40);line-height:1.5;">Para cada 6.8 passes cedidos em campo avançado, uma ação defensiva. Melhor PPDA da rodada. Goleiro e zagueiros são seguros no Cartola.</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /sidebar -->
+  </div>
+</div><!-- /page-bra -->
+
+
+<!-- ═══════════════════════════════════════════
+     COPA DO BRASIL
+═══════════════════════════════════════════ -->
+<div id="page-copa" class="page">
+
+  <!-- COPA EDITORIAL HERO -->
+  <div class="copa-hero">
+    <div class="copa-hero-inner">
+      <div class="ch-main">
+        <div class="ch-eyebrow">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9H4.5a2.5 2.5 0 010-5H6"/><path d="M18 9h1.5a2.5 2.5 0 000-5H18"/><path d="M4 22h16"/><path d="M18 2H6v7a6 6 0 0012 0V2z"/></svg>
+          Copa do Brasil 2026 · Quartas de Final
+        </div>
+        <h2 class="ch-headline">
+          FLAMENGO E ATLÉTICO-MG<br>
+          TÊM <span class="accent">VANTAGEM CLARA</span>.<br>
+          SÃO PAULO E BOTAFOGO<br>
+          ESTÃO NO TUDO OU NADA.
+        </h2>
+        <p class="ch-sub">
+          Jogo de ida disputado. O modelo calculou as probabilidades de classificação para cada confronto — baseado no xG de ida, não só no placar. São Paulo empatou em casa mas criou xG de 1.8. Botafogo empata com 56% de chance de avançar.
+        </p>
+      </div>
+      <div class="ch-stat">
+        <div class="ch-stat-val">72%</div>
+        <div class="ch-stat-label">Probabilidade de classificação do Flamengo após vencer por 2–0</div>
+        <div class="ch-stat-sub">xG da ida: 2.4 × 0.8</div>
+      </div>
+      <div class="ch-stat">
+        <div class="ch-stat-val am">56%</div>
+        <div class="ch-stat-label">Botafogo tem maioria de chance de avançar mesmo empatando o jogo de ida</div>
+        <div class="ch-stat-sub">xG da ida: 0.9 × 0.7</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="layout" style="grid-template-columns:1fr;">
+
+    <!-- BRACKET NARRATIVE -->
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-title">Quartas de Final — Jogo de Ida</div>
+          <div class="card-sub">xG · probabilidade de classificação · narrativa do confronto</div>
+        </div>
+        <div class="card-badge">Volta em 2 semanas</div>
+      </div>
+      <div class="bracket-grid" id="copa-bracket"></div>
+    </div>
+
+    <!-- GRID: resultados + artilharia -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">Resultados — Oitavas</div>
+          <div class="card-sub">16 jogos · xG disponível · veredito</div>
+        </div>
+        <div id="copa-results"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">Artilharia Copa</div>
+          <div class="card-sub">Gols · assistências · xG acumulado</div>
+        </div>
+        <table class="art-table">
+          <thead><tr><th>#</th><th>Jogador</th><th>G</th><th>A</th><th class="xg-group">xG</th></tr></thead>
+          <tbody id="copa-scorers"></tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+</div><!-- /page-copa -->
+
+
+<script>
+/* ═══════════════════════════════════════
+   DATA
+═══════════════════════════════════════ */
+const TEAMS = [
+  {id:'fla',name:'Flamengo',    short:'FLA',color:'#E02020',j:8,pts:19,v:6,e:1,d:1,gf:18,gc:7, xg:17.2,xga:6.8, xpts:18.1,form:['W','W','D','W','W'],
+   label:'ml-up',labelTxt:'🟢 Liderança sólida',cartola:'Atacantes e meia do Fla têm os melhores adversários desta rodada. PPDA 6.8 — defesa também segura.'},
+  {id:'pal',name:'Palmeiras',   short:'PAL',color:'#006437',j:8,pts:17,v:5,e:2,d:1,gf:14,gc:6, xg:14.8,xga:7.1, xpts:16.2,form:['W','W','W','D','W'],
+   label:'ml-up',labelTxt:'🟢 Consistente',cartola:'Defesa muito segura para o Cartola. xGA 7.1 — 4º melhor do campeonato. Goleiro e zagueiros são opções confiáveis.'},
+  {id:'atm',name:'Atlético-MG', short:'ATM',color:'#2D2D2D',j:8,pts:16,v:5,e:1,d:2,gf:15,gc:9, xg:13.9,xga:9.4, xpts:13.4,form:['W','W','L','W','W'],
+   label:'ml-lucky',labelTxt:'⚠ Ligeiramente sortudo',cartola:'Hulk escalado em excesso. O modelo penaliza adversários defensivos. Verificar o matchup da rodada antes de confirmar.'},
+  {id:'int',name:'Internacional',short:'INT',color:'#CC2200',j:8,pts:14,v:4,e:2,d:2,gf:13,gc:10,xg:12.4,xga:10.1,xpts:13.6,form:['W','D','W','L','W'],
+   label:'ml-up',labelTxt:'🟢 Pick de valor',cartola:'Gabi Ferreira é o pick de valor do campeonato. C$8.4 com xG/jogo 1.42 — eficiência acima da média com preço baixo.'},
+  {id:'bra',name:'Bragantino',  short:'RBB',color:'#C62020',j:8,pts:13,v:4,e:1,d:3,gf:12,gc:11,xg:11.4,xga:10.9,xpts:11.8,form:['W','W','L','W','D'],
+   label:null,labelTxt:'',cartola:'Alerrandro tem um dos melhores xG acumulados do campeonato. Adversário desta rodada tem xGA 1.1.'},
+  {id:'vas',name:'Vasco',       short:'VAS',color:'#111',   j:8,pts:12,v:3,e:3,d:2,gf:10,gc:9, xg:8.2, xga:10.4,xpts:7.8, form:['W','D','D','W','L'],
+   label:'ml-lucky',labelTxt:'🔴 Superestimado',cartola:'EVITAR jogadores do Vasco. A tabela mente: xPTS 7.8 com 12 pts reais. Eficiência insustentável.'},
+  {id:'for',name:'Fortaleza',   short:'FOR',color:'#1038A0',j:8,pts:12,v:3,e:3,d:2,gf:8, gc:6, xg:8.9, xga:5.2, xpts:14.1,form:['D','W','D','D','W'],
+   label:'ml-up',labelTxt:'🍀 Mais azarado 2',cartola:'Goleiro e zagueiros do Fortaleza são os mais seguros do campeonato. xGA 5.2 — melhor defesa. Ótimas opções baratas.'},
+  {id:'sao',name:'São Paulo',   short:'SPO',color:'#CC1020',j:8,pts:11,v:3,e:2,d:3,gf:11,gc:10,xg:10.2,xga:10.8,xpts:10.1,form:['W','L','W','D','L'],
+   label:null,labelTxt:'',cartola:'Luciano tem bons números mas adversário desta rodada tem defesa mediana. Decisão neutra.'},
+  {id:'bah',name:'Bahia',       short:'BAH',color:'#1038A0',j:8,pts:10,v:3,e:1,d:4,gf:9, gc:11,xg:9.8, xga:11.2,xpts:9.4, form:['L','W','L','W','D'],
+   label:null,labelTxt:'',cartola:'Defesa com xGA alto. Evitar defensores do Bahia contra ataques fortes.'},
+  {id:'cru',name:'Cruzeiro',    short:'CRU',color:'#1432A0',j:8,pts:10,v:2,e:4,d:2,gf:10,gc:10,xg:9.4, xga:9.8, xpts:10.2,form:['D','D','W','D','L'],
+   label:null,labelTxt:'',cartola:'Meio-campo inconsistente. Verificar matchup antes de escalar.'},
+  {id:'bot',name:'Botafogo',    short:'BOT',color:'#1A1A1A',j:8,pts:9, v:2,e:3,d:3,gf:9, gc:10,xg:13.1,xga:9.8, xpts:14.2,form:['D','L','W','D','L'],
+   label:'ml-up',labelTxt:'🍀 Mais azarado',cartola:'Atacantes do Botafogo SUBAVALIADOS no Cartola. xG alto com gols abaixo. Espera pra explodir — considerar com cautela, alto risco-retorno.'},
+  {id:'flu',name:'Fluminense',  short:'FLU',color:'#8B1538',j:8,pts:9, v:2,e:3,d:3,gf:9, gc:11,xg:9.1, xga:11.4,xpts:8.8, form:['L','D','W','D','L'],
+   label:null,labelTxt:'',cartola:'Cano com desempenho irregular. xG médio mas finalizações fora do alvo.'},
+  {id:'ath',name:'Athletico-PR',short:'CAP',color:'#C00020',j:8,pts:8, v:2,e:2,d:4,gf:8, gc:13,xg:8.4, xga:12.8,xpts:7.9, form:['L','W','L','L','D'],
+   label:'ml-down',labelTxt:'🔴 Tendência de queda',cartola:'Defesa com o 3º pior xGA. Evitar defensores e goleiro do Athletico.'},
+  {id:'cor',name:'Corinthians', short:'COR',color:'#333',   j:8,pts:7, v:1,e:4,d:3,gf:7, gc:12,xg:7.8, xga:13.9,xpts:6.4, form:['D','L','D','L','D'],
+   label:'ml-weak',labelTxt:'⚔ Defesa fraca no Cartola',cartola:'xGA 13.9 — pior defesa do campeonato. ÓTIMO adversário para atacantes adversários. Pior escolha para goleiro/defesa.'},
+  {id:'goi',name:'Goiás',       short:'GOI',color:'#076B34',j:8,pts:6, v:1,e:3,d:4,gf:6, gc:14,xg:6.8, xga:14.2,xpts:5.8, form:['L','D','L','L','D'],
+   label:'ml-down',labelTxt:'🔴 Zona de risco',cartola:'Defesa com o 2º pior xGA. Evitar defensores. Ataques adversários do Goiás têm bônus no score.'},
+  {id:'cui',name:'Cuiabá',      short:'CUI',color:'#E8A010',j:8,pts:5, v:1,e:2,d:5,gf:5, gc:16,xg:5.4, xga:15.8,xpts:4.2, form:['L','L','W','L','L'],
+   label:'ml-down',labelTxt:'🔴 Rebaixamento',cartola:'xGA 15.8 — pior defesa do campeonato. Qualquer atacante que enfrente o Cuiabá tem bônus máximo no model score.'},
+  {id:'ame',name:'América-MG',  short:'AME',color:'#076B34',j:8,pts:4, v:0,e:4,d:4,gf:4, gc:14,xg:5.2, xga:14.4,xpts:4.8, form:['D','L','D','D','L'],
+   label:'ml-down',labelTxt:'🔴 Rebaixamento',cartola:'Zero vitórias. Defensores e goleiro são apostas de altíssimo risco no Cartola.'},
+  {id:'atu',name:'Atlético-GO', short:'ACG',color:'#CC2020',j:8,pts:4, v:1,e:1,d:6,gf:5, gc:17,xg:5.1, xga:16.2,xpts:3.9, form:['L','L','D','L','W'],
+   label:'ml-down',labelTxt:'🔴 Rebaixamento',cartola:'xGA 16.2. Adversários do Atlético-GO têm o maior bônus de matchup do campeonato esta rodada.'},
+  {id:'csi',name:'Ceará',       short:'CSC',color:'#1A1A1A',j:8,pts:3, v:0,e:3,d:5,gf:4, gc:15,xg:4.8, xga:15.8,xpts:3.6, form:['L','D','L','D','L'],
+   label:'ml-down',labelTxt:'🔴 Zona crítica',cartola:'Sem vitórias. Defensores do Ceará são péssimas opções no Cartola.'},
+  {id:'san',name:'Santos',      short:'SAN',color:'#333',   j:8,pts:2, v:0,e:2,d:6,gf:3, gc:18,xg:3.9, xga:17.2,xpts:2.4, form:['L','L','D','L','L'],
+   label:'ml-down',labelTxt:'🔴 Fundo da tabela',cartola:'xGA 17.2 — pior da última rodada. Atacantes adversários do Santos têm score máximo no modelo.'},
+];
+
+const RESULTS = [
+  {home:'Flamengo',     hsc:3,hxg:2.8,away:'Cuiabá',        asc:0,axg:0.4,date:'Dom 12/05'},
+  {home:'Palmeiras',    hsc:2,hxg:1.9,away:'Santos',          asc:0,axg:0.6,date:'Dom 12/05'},
+  {home:'Atlético-MG',  hsc:2,hxg:2.1,away:'América-MG',     asc:1,axg:0.8,date:'Sáb 11/05'},
+  {home:'Botafogo',     hsc:1,hxg:1.8,away:'São Paulo',       asc:1,axg:0.7,date:'Sáb 11/05'},
+  {home:'Internacional',hsc:2,hxg:2.2,away:'Goiás',           asc:0,axg:0.5,date:'Sex 10/05'},
+  {home:'Vasco',        hsc:2,hxg:1.1,away:'Ceará',           asc:1,axg:0.9,date:'Sex 10/05'},
+  {home:'Fortaleza',    hsc:1,hxg:0.8,away:'Corinthians',     asc:1,axg:0.9,date:'Qui 09/05'},
+  {home:'Bragantino',   hsc:2,hxg:1.9,away:'Fluminense',      asc:0,axg:0.6,date:'Qui 09/05'},
+];
+
+const SCORERS = [
+  {name:'Vinicius Jr.',  club:'Flamengo',   color:'#E02020',init:'VJ',xg:6.8,goals:7},
+  {name:'Luciano',       club:'São Paulo',   color:'#CC1020',init:'LU',xg:5.9,goals:5},
+  {name:'Alerrandro',    club:'Bragantino',  color:'#C62020',init:'AL',xg:5.7,goals:6},
+  {name:'Hulk',          club:'Atlético-MG', color:'#2D2D2D',init:'HU',xg:5.4,goals:4},
+  {name:'Gabi Ferreira', club:'Internacional',color:'#CC2200',init:'GF',xg:5.2,goals:5},
+  {name:'Cano',          club:'Fluminense',  color:'#8B1538',init:'CA',xg:4.9,goals:3},
+  {name:'Endrick',       club:'Palmeiras',   color:'#006437',init:'EN',xg:4.7,goals:5},
+  {name:'Pedro Raul',    club:'Botafogo',    color:'#1A1A1A',init:'PR',xg:4.4,goals:3},
+];
+
+const FIXTURES = [
+  {home:'Flamengo',   away:'Botafogo',     hp:62,dp:18,ap:20,date:'Qua 15/05',time:'19:00'},
+  {home:'Palmeiras',  away:'Internacional',hp:48,dp:24,ap:28,date:'Qui 16/05',time:'21:30'},
+  {home:'Fortaleza',  away:'Atlético-MG',  hp:44,dp:28,ap:28,date:'Qui 16/05',time:'19:00'},
+  {home:'São Paulo',  away:'Vasco',        hp:52,dp:22,ap:26,date:'Sex 17/05',time:'21:00'},
+  {home:'Bragantino', away:'Corinthians',  hp:55,dp:22,ap:23,date:'Sáb 18/05',time:'19:00'},
+];
+
+const COPA_BRACKET = [
+  {
+    home:'Flamengo',hcolor:'#E02020',hinit:'FLA',hscore:2,hxg:2.4,hprob:72,
+    away:'Athletico-PR',acolor:'#C00020',ainit:'CAP',ascore:0,axg:0.8,aprob:28,
+    status:'dominant',statusTxt:'Vantagem clara',
+    action:'<strong>Athletico precisa vencer por 3+ gols</strong> fora para avançar. xG de ida favorece muito o Flamengo.'
+  },
+  {
+    home:'Palmeiras',hcolor:'#006437',hinit:'PAL',hscore:1,hxg:1.8,hprob:65,
+    away:'São Paulo',acolor:'#CC1020',ainit:'SPO',ascore:1,axg:1.1,aprob:35,
+    status:'balanced',statusTxt:'Equilíbrio no placar, Palmeiras à frente nos dados',
+    action:'<strong>São Paulo empatou mas xG da ida foi 1.1 × 1.8</strong>. Palmeiras criou mais e foi mais eficiente. Qualquer vitória do Palmeiras fora fecha o confronto.'
+  },
+  {
+    home:'Atlético-MG',hcolor:'#2D2D2D',hinit:'ATM',hscore:2,hxg:2.0,hprob:58,
+    away:'Internacional',acolor:'#CC2200',ainit:'INT',ascore:1,axg:1.3,aprob:42,
+    status:'balanced',statusTxt:'Em aberto — Internacional tem chance real',
+    action:'<strong>Internacional marcou fora e xG não foi tão distante</strong> (1.3 × 2.0). Vencer em casa no jogo da volta coloca o time em vantagem.'
+  },
+  {
+    home:'Fortaleza',hcolor:'#1038A0',hinit:'FOR',hscore:0,hxg:0.9,hprob:44,
+    away:'Botafogo',acolor:'#1A1A1A',ainit:'BOT',ascore:0,axg:0.7,aprob:56,
+    status:'open',statusTxt:'Tudo em aberto — empate sem gols',
+    action:'<strong>Botafogo tem 56% de chance mesmo sem vantagem</strong>. Joga a volta em casa, onde tem o melhor desempenho do campeonato.'
+  },
+];
+
+const COPA_RESULTS=[
+  {home:'Flamengo',     hsc:4,hxg:3.1,away:'Cuiabá',      asc:0,axg:0.4},
+  {home:'Palmeiras',    hsc:3,hxg:2.6,away:'Goiás',        asc:0,axg:0.7},
+  {home:'Atlético-MG',  hsc:2,hxg:2.1,away:'Ceará',        asc:1,axg:0.9},
+  {home:'Fortaleza',    hsc:1,hxg:1.2,away:'América-MG',   asc:0,axg:0.6},
+  {home:'Botafogo',     hsc:2,hxg:1.9,away:'Santos',        asc:0,axg:0.5},
+  {home:'Internacional',hsc:3,hxg:2.4,away:'Athletico-PR', asc:1,axg:1.2},
+  {home:'São Paulo',    hsc:2,hxg:1.8,away:'Cruzeiro',      asc:0,axg:0.9},
+  {home:'Bragantino',   hsc:1,hxg:1.6,away:'Fluminense',   asc:3,axg:2.2},
+];
+
+const COPA_SCORERS=[
+  {name:'Luciano',      club:'São Paulo',   g:4,a:1,xg:4.1},
+  {name:'Vinicius Jr.', club:'Flamengo',    g:4,a:2,xg:3.8},
+  {name:'Cano',         club:'Fluminense',  g:3,a:1,xg:2.9},
+  {name:'Alerrandro',   club:'Bragantino',  g:3,a:0,xg:3.1},
+  {name:'Hulk',         club:'Atlético-MG', g:2,a:2,xg:2.4},
+  {name:'Gabi Ferreira',club:'Internacional',g:2,a:1,xg:2.2},
+  {name:'Pedro Raul',   club:'Botafogo',    g:2,a:0,xg:2.1},
+  {name:'Cuesta',       club:'Botafogo',    g:0,a:3,xg:0.4},
+];
+
+/* ═══════════════════════════════════════
+   RENDER
+═══════════════════════════════════════ */
+function zone(i){
+  if(i<4)return'zone-cl';
+  if(i<6)return'zone-lib';
+  if(i>=16)return'zone-rel';
+  return'';
+}
+function fHtml(arr){
+  return'<div class="form">'+arr.map(r=>`<div class="f ${r.toLowerCase()}">${r}</div>`).join('')+'</div>';
+}
+function delta(pts,xpts){
+  const d=(pts-xpts);
+  const cls=d>1?'pos':d<-1?'neg':'neu';
+  const s=d>0?'+':'';
+  return`<span class="delta ${cls}">${s}${d.toFixed(1)}</span>`;
+}
+function verdict(hxg,axg){
+  const diff=Math.abs(hxg-axg);
+  if(diff<0.5)return['fair','Equilibrado'];
+  if(hxg>axg*1.8)return['lucky','Placar justo'];
+  if(axg>hxg*1.5)return['injust','Resultado injusto'];
+  return['fair','Dado correto'];
+}
+
+function renderStandings(){
+  const body=document.getElementById('standings-body');
+  body.innerHTML=TEAMS.map((t,i)=>{
+    const z=zone(i);
+    const labelHtml=t.label?`<span class="micro-label ${t.label}">${t.labelTxt}</span>`:'';
+    return`<tr class="${z}" data-idx="${i}" onclick="showSpotlight(${i})">
+      <td class="pos ${i<6?'g':''}">${i+1}</td>
+      <td class="left">
+        <div class="team-cell">
+          <div class="team-badge" style="background:${t.color}">${t.short}</div>
+          <div>
+            <div class="team-name">${t.name}</div>
+            ${labelHtml}
+          </div>
+        </div>
+      </td>
+      <td><span class="num">${t.j}</span></td>
+      <td><span class="pts">${t.pts}</span></td>
+      <td class="hide-mob"><span class="num">${t.v}</span></td>
+      <td class="hide-mob"><span class="num">${t.e}</span></td>
+      <td class="hide-mob"><span class="num">${t.d}</span></td>
+      <td class="hide-mob"><span class="num">${t.gf}</span></td>
+      <td class="hide-mob"><span class="num">${t.gc}</span></td>
+      <td class="xg-col hide-mob">${t.xg.toFixed(1)}</td>
+      <td class="xg-col hide-mob">${t.xga.toFixed(1)}</td>
+      <td class="xg-col">${t.xpts.toFixed(1)}</td>
+      <td class="xg-col">${delta(t.pts,t.xpts)}</td>
+      <td>${fHtml(t.form)}</td>
+    </tr>`;
+  }).join('');
+}
+
+function showSpotlight(idx){
+  const t=TEAMS[idx];
+  const sp=document.getElementById('spotlight');
+  const title=document.getElementById('sp-title');
+  const ctag=document.getElementById('sp-cartola-tag');
+  const grid=document.getElementById('sp-grid');
+  const cbox=document.getElementById('sp-cartola-box');
+  title.textContent=`${t.name} — Análise detalhada`;
+  ctag.textContent='🗓 Impacto Cartola →';
+  const d=t.pts-t.xpts;
+  const ds=d>0?'+':'';
+  const dc=d>1?'var(--verde-l)':d<-1?'var(--red)':'#fff';
+  grid.innerHTML=`
+    <div class="sp-stat"><div class="sp-val">${t.pts}</div><div class="sp-lbl">Pontos reais</div></div>
+    <div class="sp-stat"><div class="sp-val g">${t.xpts.toFixed(1)}</div><div class="sp-lbl">xPTS esperados</div></div>
+    <div class="sp-stat"><div class="sp-val" style="color:${dc}">${ds}${d.toFixed(1)}</div><div class="sp-lbl">Diferença (sorte)</div></div>
+    <div class="sp-stat"><div class="sp-val y">${(t.xg/t.j).toFixed(2)}</div><div class="sp-lbl">xG por jogo</div></div>
+    <div class="sp-stat"><div class="sp-val">${t.xg.toFixed(1)}</div><div class="sp-lbl">xG total</div></div>
+    <div class="sp-stat"><div class="sp-val r">${t.xga.toFixed(1)}</div><div class="sp-lbl">xGA total</div></div>
+    <div class="sp-stat"><div class="sp-val">${t.gf}</div><div class="sp-lbl">Gols marcados</div></div>
+    <div class="sp-stat"><div class="sp-val">${t.gc}</div><div class="sp-lbl">Gols sofridos</div></div>
+  `;
+  cbox.innerHTML=`<strong>📋 Impacto no Cartola:</strong> ${t.cartola}`;
+  if(sp.classList.contains('on')&&sp.dataset.team===String(idx)){
+    sp.classList.remove('on');sp.dataset.team='';
+  }else{
+    sp.classList.add('on');sp.dataset.team=String(idx);
+    sp.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+}
+
+function jumpToTeam(id){
+  const idx=TEAMS.findIndex(t=>t.id===id);
+  if(idx>-1)showSpotlight(idx);
+  document.querySelector(`tr[data-idx="${idx}"]`)?.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function renderResults(){
+  const el=document.getElementById('results-list');
+  el.innerHTML=RESULTS.map(r=>{
+    const [vc,vt]=verdict(r.hxg,r.axg);
+    return`<div class="result-row">
+      <div class="rr-date">${r.date}</div>
+      <div class="rr-team">${r.home}</div>
+      <div class="rr-score">
+        <div style="display:flex;align-items:center;"><span class="rr-pts">${r.hsc}</span><span class="rr-sep">—</span><span class="rr-pts">${r.asc}</span></div>
+        <div class="rr-xg">xG: <strong>${r.hxg}</strong> — <strong>${r.axg}</strong></div>
+        <div class="rr-verdict ${vc}">${vt}</div>
+      </div>
+      <div class="rr-team right">${r.away}</div>
+      <div></div>
+    </div>`;
+  }).join('');
+}
+
+function renderScorers(){
+  const el=document.getElementById('top-xg-scorers');
+  const max=SCORERS[0].xg;
+  el.innerHTML=SCORERS.map((s,i)=>`
+    <div class="scorer-row">
+      <div class="sc-rank">${i+1}</div>
+      <div class="sc-av" style="background:${s.color}">${s.init}</div>
+      <div class="sc-info">
+        <div class="sc-name">${s.name}</div>
+        <div class="sc-club">${s.club}</div>
+        <div class="bar-wrap"><div class="bar" style="width:${(s.xg/max*100).toFixed(0)}%"></div></div>
+      </div>
+      <div class="sc-data">
+        <div class="sc-xg">${s.xg.toFixed(1)}</div>
+        <div class="sc-goals">${s.goals} gols reais</div>
+      </div>
+    </div>`).join('');
+}
+
+function renderFixtures(){
+  const el=document.getElementById('fixtures');
+  el.innerHTML=FIXTURES.map(f=>`
+    <div class="fixture-row">
+      <div class="fx-date">${f.date}<br>${f.time}</div>
+      <div class="fx-teams">
+        <div class="fx-match">${f.home} × ${f.away}</div>
+        <div class="fx-time">modelo xG</div>
+      </div>
+      <div class="fx-prob">
+        <span class="fx-p h">${f.hp}%</span>
+        <span class="fx-p d">${f.dp}%</span>
+        <span class="fx-p a">${f.ap}%</span>
+      </div>
+    </div>`).join('');
+}
+
+function renderCopaBracket(){
+  const el=document.getElementById('copa-bracket');
+  el.innerHTML=COPA_BRACKET.map(m=>{
+    const hw=m.hscore>m.ascore;
+    const aw=m.ascore>m.hscore;
+    return`<div class="tie-card">
+      <div class="tie-status ${m.status}">
+        <span>${m.statusTxt}</span>
+        <span class="tie-phase">Ida disputada</span>
+      </div>
+      <div class="tie-team ${hw?'leading':''}">
+        <div class="tie-av" style="background:${m.hcolor}">${m.hinit}</div>
+        <div class="tie-name ${aw?'trailing':''}">${m.home}</div>
+        <div class="tie-score-wrap">
+          <div class="tie-sc ${hw?'winner':''}">${m.hscore}</div>
+          <div class="tie-xg">xG ${m.hxg}</div>
+        </div>
+      </div>
+      <div class="tie-team ${aw?'leading':''}">
+        <div class="tie-av" style="background:${m.acolor}">${m.ainit}</div>
+        <div class="tie-name ${hw?'trailing':''}">${m.away}</div>
+        <div class="tie-score-wrap">
+          <div class="tie-sc ${aw?'winner':''}">${m.ascore}</div>
+          <div class="tie-xg">xG ${m.axg}</div>
+        </div>
+      </div>
+      <div class="tie-prob-bar">
+        <div class="prob-bar-track"><div class="prob-bar-fill" style="width:${m.hprob}%"></div></div>
+        <div class="prob-labels">
+          <span class="prob-pct h">${m.home.split(' ')[0]} ${m.hprob}%</span>
+          <span class="prob-pct a">${m.away.split(' ')[0]} ${m.aprob}%</span>
+        </div>
+      </div>
+      <div class="tie-action">${m.action}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderCopaResults(){
+  const el=document.getElementById('copa-results');
+  el.innerHTML=COPA_RESULTS.map(r=>`
+    <div class="result-row" style="grid-template-columns:60px 1fr auto 1fr 40px;">
+      <div class="rr-date" style="font-size:9px;color:var(--k20);">Oitavas</div>
+      <div class="rr-team" style="font-size:12px">${r.home}</div>
+      <div class="rr-score">
+        <div style="display:flex;align-items:center;"><span class="rr-pts" style="font-size:16px">${r.hsc}</span><span class="rr-sep">—</span><span class="rr-pts" style="font-size:16px">${r.asc}</span></div>
+        <div class="rr-xg">xG: <strong>${r.hxg}</strong> — <strong>${r.axg}</strong></div>
+      </div>
+      <div class="rr-team right" style="font-size:12px">${r.away}</div>
+      <div></div>
+    </div>`).join('');
+}
+
+function renderCopaScorers(){
+  const el=document.getElementById('copa-scorers');
+  el.innerHTML=COPA_SCORERS.map((s,i)=>`
+    <tr>
+      <td><span class="num">${i+1}</span></td>
+      <td><div class="art-name">${s.name}</div><div class="art-club">${s.club}</div></td>
+      <td><span class="art-num w">${s.g}</span></td>
+      <td><span class="art-num y">${s.a}</span></td>
+      <td class="xg-col"><span class="art-num g">${s.xg.toFixed(1)}</span></td>
+    </tr>`).join('');
+}
+
+/* CONTROLS */
+function switchComp(el,id){
+  document.querySelectorAll('.cs-tab').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('page-'+id).classList.add('on');
+}
+function stView(el){
+  document.querySelectorAll('#st-seg button').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+}
+
+/* INIT */
+renderStandings();
+renderResults();
+renderScorers();
+renderFixtures();
+renderCopaBracket();
+renderCopaResults();
+renderCopaScorers();
+</script>
+</body>
+</html>
